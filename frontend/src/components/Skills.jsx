@@ -40,36 +40,36 @@ const Skills = () => {
   return (
     <section id="skills" className="section-container relative">
       <div className="absolute right-0 top-1/3 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
-      
+
       <div className="text-center mb-16 relative">
         <h2 className="section-title">Technical Arsenal</h2>
         <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto rounded-full mt-[-2rem]"></div>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {skillCategories.map((category, index) => (
-           <div key={index} className={`card group p-6 xl:p-8 ${category.borderColor}`}>
-            
-             <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${category.bgGradient} rounded-bl-full opacity-50 transition-transform duration-500 group-hover:scale-110`}></div>
+          <div key={index} className={`card group p-6 xl:p-8 ${category.borderColor}`}>
 
-             <div className="relative z-10">
-               <div className="flex flex-col items-center mb-8 text-center">
-                 <div className={`w-16 h-16 rounded-2xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center mb-4 backdrop-blur-md shadow-lg transform group-hover:-translate-y-2 transition-all duration-300 ${category.iconColor}`}>
-                   <category.icon className="text-3xl" />
-                 </div>
-                 <h3 className="text-xl font-bold text-white">{category.title}</h3>
-               </div>
-               
-               <ul className="space-y-3">
-                 {category.skills.map((skill, idx) => (
-                   <li key={idx} className="flex items-center text-slate-300 group-hover:text-white transition-colors">
-                     <span className={`w-1.5 h-1.5 rounded-full mr-3 ${category.iconColor.replace('text', 'bg')}`}></span>
-                     <span className="font-medium text-sm">{skill}</span>
-                   </li>
-                 ))}
-               </ul>
-             </div>
-           </div>
+            <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${category.bgGradient} rounded-bl-full opacity-50 transition-transform duration-500 group-hover:scale-110`}></div>
+
+            <div className="relative z-10">
+              <div className="flex flex-col items-center mb-8 text-center">
+                <div className={`w-16 h-16 rounded-2xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center mb-4 backdrop-blur-md shadow-lg transform group-hover:-translate-y-2 transition-all duration-300 ${category.iconColor}`}>
+                  <category.icon className="text-3xl" />
+                </div>
+                <h3 className="text-xl font-bold text-white">{category.title}</h3>
+              </div>
+
+              <ul className="space-y-3">
+                {category.skills.map((skill, idx) => (
+                  <li key={idx} className="flex items-center text-slate-300 group-hover:text-white transition-colors">
+                    <span className={`w-1.5 h-1.5 rounded-full mr-3 ${category.iconColor.replace('text', 'bg')}`}></span>
+                    <span className="font-medium text-sm">{skill}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         ))}
       </div>
     </section>

@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react
 
 const Footer = ({ personalInfo }) => {
   return (
-    <footer className="relative border-t border-slate-800 bg-slate-900/80 backdrop-blur-xl overflow-hidden mt-20">
+    <footer id="contact" className="relative border-t border-slate-800 bg-slate-900/80 backdrop-blur-xl overflow-hidden mt-20">
       
       {/* Decorative glow */}
       <div className="absolute top-0 left-1/2 -ml-[400px] w-[800px] h-[400px] bg-cyan-500/5 rounded-full blur-3xl rounded-t-none -z-10 mix-blend-screen pointer-events-none"></div>

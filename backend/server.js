@@ -23,6 +23,31 @@ app.get("/api/health", (req, res) => {
     res.json({ status: "OK" });
 });
 
+app.post("/api/contact", async (req, res) => {
+    try {
+        const { name, email, subject, message } = req.body;
+
+        // Basic validation
+        if (!name || !email || !message) {
+            return res.status(400).json({ error: "Missing required fields" });
+        }
+
+        console.log("=== New Contact Form Submission ===");
+        console.log(`Name: ${name}`);
+        console.log(`Email: ${email}`);
+        console.log(`Subject: ${subject || "No Subject"}`);
+        console.log(`Message: ${message}`);
+        console.log("===================================");
+
+        // Here you would typically send an email using nodemailer or similar service
+        
+        res.json({ success: true, message: "Message received successfully!" });
+    } catch (error) {
+        console.error("Error in /api/contact:", error);
+        res.status(500).json({ error: "Failed to process message" });
+    }
+});
+
 app.get("/api/stats/:leetcodeUsername/:gfgUsername", async (req, res) => {
     // Set timeout for this request
     req.setTimeout(30000); // 30 seconds

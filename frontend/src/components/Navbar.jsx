@@ -15,11 +15,15 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Education', href: '#education' },
     { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
     { name: 'Stats', href: '#stats' },
     { name: 'Certifications', href: '#certifications' },
+    { name: 'Contact', href: '#contact' },
+    { name: 'Resume', href: '/General CV Template (approved) Ankit kumar (1).pdf', external: true },
   ];
 
   return (
@@ -44,6 +48,8 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
+                  target={link.external ? "_blank" : "_self"}
+                  rel={link.external ? "noopener noreferrer" : ""}
                   className="px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-all duration-300 ease-in-out"
                 >
                   {link.name}
@@ -78,6 +84,8 @@ const Navbar = () => {
              <a
               key={link.name}
               href={link.href}
+              target={link.external ? "_blank" : "_self"}
+              rel={link.external ? "noopener noreferrer" : ""}
               className="block px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
               onClick={() => setIsOpen(false)}
             >

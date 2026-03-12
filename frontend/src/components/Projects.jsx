@@ -1,7 +1,61 @@
 import React from 'react';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
+const ProjectImage = ({ images, title }) => {
+  const [currentImage, setCurrentImage] = React.useState(0);
+
+  React.useEffect(() => {
+    if (images.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [images]);
+
+  return (
+    <div className="relative mb-6 overflow-hidden rounded-xl aspect-video border border-slate-700/50 group-hover:border-cyan-500/30 transition-colors">
+      {images.map((img, idx) => (
+        <img
+          key={idx}
+          src={img}
+          alt={`${title} - ${idx + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-all duration-1000 ${
+            idx === currentImage ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+      
+      {/* Slider Indicators */}
+      {images.length > 1 && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+          {images.map((_, idx) => (
+            <div
+              key={idx}
+              className={`h-1 rounded-full transition-all duration-300 ${
+                idx === currentImage ? 'w-4 bg-cyan-400' : 'w-1.5 bg-white/30'
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Projects = () => {
+  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+  
+  const handleMouseMove = (e, index) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setMousePos({ x, y });
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   const projects = [
     {
       title: 'SRIC School Website',
@@ -15,7 +69,8 @@ const Projects = () => {
       tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Tailwind', 'REST APIs'],
       github: 'https://github.com/ankitgithub12/Sitaram-Inter-College',
       live: 'https://sric-fdq2.onrender.com/',
-      gradient: 'from-cyan-500 to-blue-500'
+      gradient: 'from-cyan-500 to-blue-500',
+      images: ['/Home1.png', '/Home2.png','/admin1.png']
     },
     {
       title: 'SlotSwap – Peer-to-Peer Scheduling App',
@@ -29,7 +84,8 @@ const Projects = () => {
       tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'JWT'],
       github: 'https://github.com/ankitgithub12/SlotSwapper',
       live: 'https://slotswapper-frontend-rtry.onrender.com/',
-      gradient: 'from-indigo-500 to-purple-500'
+      gradient: 'from-indigo-500 to-purple-500',
+      images: ['/slotswap1.png','/slotswap2.png','/slotswap3.png']
     }
   ];
 
@@ -44,10 +100,24 @@ const Projects = () => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
         {projects.map((project, index) => (
-          <div key={index} className="card group relative">
-            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl`}></div>
+          <div 
+            key={index} 
+            className="card group relative overflow-hidden"
+            onMouseMove={(e) => handleMouseMove(e, index)}
+          >
+            {/* Spotlight Effect */}
+            <div 
+              className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+              style={{
+                background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(6, 182, 212, 0.15), transparent 40%)`
+              }}
+            ></div>
+
+            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`}></div>
 
             <div className="relative z-10 h-full flex flex-col">
+              <ProjectImage images={project.images} title={project.title} />
+
               <div className="flex flex-col sm:flex-row justify-between items-start mb-6 gap-2">
                 <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
                   {project.title}

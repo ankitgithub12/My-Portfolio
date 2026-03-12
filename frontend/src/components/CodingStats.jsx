@@ -88,7 +88,7 @@ const CodingStats = ({ stats, loading, error }) => {
         <StatBadge label="LeetCode Solved" value={lcTotal} icon={SiLeetcode} color="text-yellow-400" />
         <StatBadge label="GFG Solved" value={gfgTotal} icon={SiGeeksforgeeks} color="text-emerald-400" />
         <StatBadge label="Longest Streak" value={gfgLongestStreak ? `${gfgLongestStreak}d` : 'N/A'} icon={FaFire} color="text-orange-400" />
-        <StatBadge label="GFG Rank" value={gfgRank ? `#${gfgRank}` : 'N/A'} icon={FaMedal} color="text-indigo-400" />
+        <StatBadge label="GFG Rank" value={gfgRank ? `${gfgRank}` : 'N/A'} icon={FaMedal} color="text-indigo-400" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">

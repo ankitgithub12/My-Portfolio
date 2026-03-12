@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCertificate, FaAward } from 'react-icons/fa';
+import { FaCertificate, FaAward, FaExternalLinkAlt } from 'react-icons/fa';
 
 const Certifications = () => {
   const certifications = [
@@ -7,43 +7,52 @@ const Certifications = () => {
       title: 'UiPath Certified Professional Automation Developer Associate',
       issuer: 'UiPath',
       date: 'Jan 2026',
-      category: 'Professional'
+      category: 'Professional',
+      link: 'https://credentials.uipath.com/profile/ankitkumar704208/wallet'
     },
     {
       title: 'Data Analytics with Python',
       issuer: 'NPTEL',
       date: 'Apr 2025',
-      category: 'Academic'
+      category: 'Academic',
+      link: 'https://archive.nptel.ac.in/content/noc/NOC25/SEM1/Ecertificates/106/noc25-cs17/Course/NPTEL25CS17S114750033904282900.pdf'
+
     },
     {
       title: 'Data Structures and Algorithms',
       issuer: 'Iamneo',
       date: 'Dec 2024',
-      category: 'Technical'
+      category: 'Technical',
+      link: 'https://lpucolab438.examly.io/certificate/U2FsdGVkX1%2BjF%2BM1pKTKzeg7xTpOsm7N4nPID9U%2BeOY%3D'
     },
     {
       title: 'Object Oriented Programming',
       issuer: 'Iamneo',
       date: 'Dec 2024',
-      category: 'Technical'
+      category: 'Technical',
+      link: 'https://lpucolab438.examly.io/certificate/U2FsdGVkX18z0Viot%2BWmAFufFT7lErydzo7SSaKn0L4%3D'
+        
     },
     {
       title: 'TCP/IP and Advanced Topics',
       issuer: 'Coursera',
       date: 'Nov 2024',
-      category: 'Networking'
+      category: 'Networking',
+      link: 'https://www.coursera.org/account/accomplishments/verify/G1TRD20982P6'
     },
     {
       title: 'Packet Switching Networks and Algorithms',
       issuer: 'Coursera',
       date: 'Nov 2024',
-      category: 'Networking'
+      category: 'Networking',
+      link: 'https://www.coursera.org/account/accomplishments/verify/RX8Z72NBBCCA'
     },
     {
       title: 'Software Development Process and Methodologies',
       issuer: 'Coursera',
       date: 'May 2024',
-      category: 'Development'
+      category: 'Development',
+      link: 'https://www.coursera.org/account/accomplishments/certificate/EDQGLD9VWNGW'
     }
   ];
 
@@ -96,9 +105,22 @@ const Certifications = () => {
                     <p className="font-bold text-slate-200 group-hover:text-white transition-colors leading-tight mb-1">
                       {cert.title}
                     </p>
-                    <div className="flex items-center text-sm text-slate-500 font-medium">
-                      <span className="bg-slate-800 px-2 py-0.5 rounded text-xs border border-slate-700 mr-2">{cert.issuer}</span>
-                      <span>{cert.date}</span>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center text-sm text-slate-500 font-medium">
+                        <span className="bg-slate-800 px-2 py-0.5 rounded text-xs border border-slate-700 mr-2">{cert.issuer}</span>
+                        <span>{cert.date}</span>
+                      </div>
+                      {cert.link && (
+                        <a 
+                          href={cert.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-cyan-400 hover:text-cyan-300 transition-colors p-1"
+                          title="View Certificate"
+                        >
+                          <FaExternalLinkAlt size={14} />
+                        </a>
+                      )}
                     </div>
                   </li>
                 ))}

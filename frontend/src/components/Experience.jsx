@@ -17,23 +17,16 @@ const Experience = () => {
     technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "Redux", "Tailwind CSS", "JWT", "REST APIs"],
     projects: [
       {
-        title: "Job Portal Platform",
-        description: "Developed a comprehensive job portal with features for job seekers and employers",
+        title: "Full Stack Development Project",
+        description: "Designing and developing a comprehensive Job Portal Platform and integrated Company Operations Dashboard",
+        live: "https://emotetechnology.onrender.com/",
+        github: "https://github.com/rahul7697762/EmoteTechnology",
         highlights: [
-          "Built responsive frontend with React.js and Tailwind CSS for seamless user experience",
-          "Implemented JWT authentication and role-based access control for candidates and recruiters",
-          "Created job listing, application tracking, and resume upload functionality",
+          "Built responsive frontend with React.js and Tailwind CSS for seamless user experience across job seeker and recruiter modules",
+          "Implemented JWT authentication and RBAC for secure candidate and recruiter workflows",
+          "Engineered job listing, application tracking, and an intuitive applicant tracking system (ATS)",
+          "Developed interactive analytics dashboard using Recharts for visualizing hiring trends and job performance metrics",
           "Integrated real-time notifications for application status updates"
-        ]
-      },
-      {
-        title: "Company Dashboard",
-        description: "Designed and developed an intuitive dashboard for company operations and analytics",
-        highlights: [
-          "Developed interactive charts and graphs using Recharts for data visualization",
-          "Created company profile management and job posting interface",
-          "Implemented applicant tracking system with filter and search capabilities",
-          "Built analytics dashboard showing application trends and job performance metrics"
         ]
       }
     ],
@@ -135,15 +128,17 @@ const Experience = () => {
                 <FaTh className="mr-2 text-indigo-400" />
                 Key Projects
               </h4>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="flex justify-center">
                 {experience.projects.map((project, index) => (
                   <div
                     key={index}
-                    className="bg-slate-900/50 border border-slate-700/50 rounded-xl p-6 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300"
+                    className="max-w-2xl w-full bg-slate-900/50 border border-slate-700/50 rounded-xl p-6 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <h5 className="font-semibold text-white text-base">{project.title}</h5>
-                      <FaExternalLinkAlt className="text-cyan-400 cursor-pointer hover:text-cyan-300 flex-shrink-0 ml-2 mt-1" />
+                      <a href={project.live} target="_blank" rel="noopener noreferrer">
+                        <FaExternalLinkAlt className="text-cyan-400 cursor-pointer hover:text-cyan-300 flex-shrink-0 ml-2 mt-1" />
+                      </a>
                     </div>
                     <p className="text-slate-400 text-sm mb-4 leading-relaxed">{project.description}</p>
                     <ul className="space-y-2">
@@ -204,16 +199,7 @@ const Experience = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Job Portal <FaExternalLinkAlt className="ml-1 text-xs" />
-                </a>
-                <span className="text-slate-600">|</span>
-                <a
-                  href="https://github.com/rahul7697762/EmoteTechnology"
-                  className="text-cyan-400 hover:text-cyan-300 text-sm font-medium flex items-center transition-colors duration-200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Company Dashboard <FaExternalLinkAlt className="ml-1 text-xs" />
+                  Source Code <FaExternalLinkAlt className="ml-1 text-xs" />
                 </a>
               </div>
             </div>

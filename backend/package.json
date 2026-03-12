@@ -14,8 +14,7 @@
     "cors": "^2.8.6",
     "dotenv": "^16.6.1",
     "express": "^4.22.1",
-    "node-cache": "^5.1.2",
-    "playwright": "^1.58.2"
+    "node-cache": "^5.1.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
