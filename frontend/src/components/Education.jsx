@@ -14,19 +14,19 @@ const Education = () => {
     },
     {
       institution: "SitaRam Inter College",
-      location: "Amroha, Uttar Pardesh",
+      location: "Amroha, Uttar Pradesh",
       degree: "Intermediate (Class XII)",
       period: "Apr' 20 - Mar' 22",
-      score: "Percentage: 76.4%",
+      score: "Percentage: 76.4",
       icon: FaAward,
       color: "from-indigo-500 to-purple-600"
     },
     {
       institution: "SitaRam Inter College",
-      location: "Amroha, Uttar Pardesh",
+      location: "Amroha, Uttar Pradesh",
       degree: "Matriculation (Class X)",
       period: "Apr' 18 - Mar' 20",
-      score: "Percentage: 82%",
+      score: "Percentage: 82",
       icon: FaAward,
       color: "from-purple-500 to-pink-600"
     }
