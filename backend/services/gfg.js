@@ -16,7 +16,7 @@ async function getGFGStats(username) {
     const finalStats = {
         platform: "GeeksforGeeks",
         username: "ankit6ewub",
-        profile: "https://www.geeksforgeeks.org/profile/ankit6ewub",
+        profile: "https://www.geeksforgeeks.org/profile/ankit6ewub?tab=activity",
         stats: {
             codingScore: 1314,
             problemsSolved: 592,
