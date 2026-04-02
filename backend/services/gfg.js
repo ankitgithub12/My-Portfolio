@@ -18,20 +18,20 @@ async function getGFGStats(username) {
         username: "ankit6ewub",
         profile: "https://www.geeksforgeeks.org/profile/ankit6ewub",
         stats: {
-            codingScore: 1245,
-            problemsSolved: 553,
-            instituteRank: 348,
+            codingScore: 1314,
+            problemsSolved: 592,
+            instituteRank: 318,
             currentStreak: 0,
             longestStreak: 73,
             potdsSolved: 168
         },
         problemBreakdown: {
             school: 0,
-            basic: 150,
-            easy: 250,
-            medium: 137,
-            hard: 16,
-            total: 553
+            basic: 179,
+            easy: 257,
+            medium: 139,
+            hard: 17,
+            total: 592
         }
     };
 
