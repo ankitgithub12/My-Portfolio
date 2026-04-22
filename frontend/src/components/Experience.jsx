@@ -19,7 +19,7 @@ const Experience = () => {
       {
         title: "Full Stack Development Project",
         description: "Designing and developing a comprehensive Job Portal Platform and integrated Company Operations Dashboard",
-        live: "https://emotetechnology.vercel.app/",
+        live: "https://edu.emotetechnology.com/",
         github: "https://github.com/rahul7697762/EmoteTechnology",
         highlights: [
           "Built responsive frontend with React.js and Tailwind CSS for seamless user experience across job seeker and recruiter modules",
