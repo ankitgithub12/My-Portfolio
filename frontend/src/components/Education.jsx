@@ -8,7 +8,7 @@ const Education = () => {
       location: "Punjab, India",
       degree: "Bachelor of Technology - Computer Science and Engineering",
       period: "Aug' 23 - Present",
-      score: "CGPA: 7.39",
+      score: "CGPA: 7.52",
       icon: FaGraduationCap,
       color: "from-cyan-500 to-blue-600"
     },
@@ -17,7 +17,7 @@ const Education = () => {
       location: "Amroha, Uttar Pradesh",
       degree: "Intermediate (Class XII)",
       period: "Apr' 20 - Mar' 22",
-      score: "Percentage: 76.4",
+      score: "Percentage: 76.40",
       icon: FaAward,
       color: "from-indigo-500 to-purple-600"
     },
@@ -26,7 +26,7 @@ const Education = () => {
       location: "Amroha, Uttar Pradesh",
       degree: "Matriculation (Class X)",
       period: "Apr' 18 - Mar' 20",
-      score: "Percentage: 82",
+      score: "Percentage: 82.00",
       icon: FaAward,
       color: "from-purple-500 to-pink-600"
     }
