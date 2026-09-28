@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCode, FaDatabase, FaTools, FaLaptopCode } from 'react-icons/fa';
+import { FaCode, FaDatabase, FaTools, FaLaptopCode, FaCheck } from 'react-icons/fa';
 
 const Skills = () => {
   const skillCategories = [
@@ -7,64 +7,62 @@ const Skills = () => {
       title: 'Languages',
       icon: FaCode,
       skills: ['C++', 'JavaScript', 'C', 'PHP', 'Python'],
-      bgGradient: 'from-blue-500/20 to-cyan-500/20',
-      iconColor: 'text-cyan-400',
-      borderColor: 'group-hover:border-cyan-500/50'
+      iconBg: 'bg-indigo-50 text-indigo-600',
+      hoverBorder: 'hover:border-indigo-300'
     },
     {
       title: 'Frameworks',
       icon: FaLaptopCode,
       skills: ['ReactJS', 'NodeJS', 'ExpressJS', 'Tailwind CSS', 'HTML5/CSS3'],
-      bgGradient: 'from-green-500/20 to-emerald-500/20',
-      iconColor: 'text-emerald-400',
-      borderColor: 'group-hover:border-emerald-500/50'
+      iconBg: 'bg-emerald-50 text-emerald-600',
+      hoverBorder: 'hover:border-emerald-300'
     },
     {
       title: 'Tools & DBs',
       icon: FaDatabase,
       skills: ['MongoDB', 'MySQL', 'Git & GitHub', 'MongoDB Atlas', 'Render'],
-      bgGradient: 'from-purple-500/20 to-pink-500/20',
-      iconColor: 'text-purple-400',
-      borderColor: 'group-hover:border-purple-500/50'
+      iconBg: 'bg-purple-50 text-purple-600',
+      hoverBorder: 'hover:border-purple-300'
     },
     {
       title: 'Soft Skills',
       icon: FaTools,
       skills: ['Analytical Thinking', 'Problem-Solving', 'Adaptability', 'Teamwork'],
-      bgGradient: 'from-orange-500/20 to-amber-500/20',
-      iconColor: 'text-amber-400',
-      borderColor: 'group-hover:border-amber-500/50'
+      iconBg: 'bg-amber-50 text-amber-600',
+      hoverBorder: 'hover:border-amber-300'
     }
   ];
 
   return (
-    <section id="skills" className="section-container relative">
-      <div className="absolute right-0 top-1/3 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
-
-      <div className="text-center mb-16 relative">
+    <section id="skills" className="space-y-8">
+      <div className="text-center max-w-xl mx-auto space-y-2">
+        <span className="section-label">Skills & Tech Stack</span>
         <h2 className="section-title">Technical Arsenal</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto rounded-full mt-[-2rem]"></div>
+        <div className="h-1 w-12 bg-brand-500 rounded-full mx-auto mt-2"></div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {skillCategories.map((category, index) => (
-          <div key={index} className={`card group p-6 xl:p-8 ${category.borderColor}`}>
-
-            <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${category.bgGradient} rounded-bl-full opacity-50 transition-transform duration-500 group-hover:scale-110`}></div>
-
-            <div className="relative z-10">
-              <div className="flex flex-col items-center mb-8 text-center">
-                <div className={`w-16 h-16 rounded-2xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center mb-4 backdrop-blur-md shadow-lg transform group-hover:-translate-y-2 transition-all duration-300 ${category.iconColor}`}>
-                  <category.icon className="text-3xl" />
+          <div
+            key={index}
+            className={`glass-card rounded-2xl p-6 border border-slate-200/90 shadow-sm ${category.hoverBorder} transition-all duration-300 flex flex-col justify-between`}
+          >
+            <div>
+              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                <div className={`w-11 h-11 rounded-xl ${category.iconBg} flex items-center justify-center text-lg shadow-sm border border-slate-200/50`}>
+                  <category.icon />
                 </div>
-                <h3 className="text-xl font-bold text-white">{category.title}</h3>
+                <h3 className="font-bold text-slate-900 text-base">{category.title}</h3>
               </div>
 
-              <ul className="space-y-3">
+              <ul className="space-y-2.5 font-medium text-sm text-slate-700">
                 {category.skills.map((skill, idx) => (
-                  <li key={idx} className="flex items-center text-slate-300 group-hover:text-white transition-colors">
-                    <span className={`w-1.5 h-1.5 rounded-full mr-3 ${category.iconColor.replace('text', 'bg')}`}></span>
-                    <span className="font-medium text-sm">{skill}</span>
+                  <li
+                    key={idx}
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50/80 border border-slate-100 hover:bg-white hover:border-brand-200 transition-colors"
+                  >
+                    <span className="font-semibold text-xs sm:text-sm">{skill}</span>
+                    <FaCheck className="text-emerald-500 text-xs shrink-0 ml-2" />
                   </li>
                 ))}
               </ul>

@@ -6,73 +6,74 @@ const About = () => {
     {
       icon: FaUserGraduate,
       title: 'Continuous Learner',
-      text: 'Currently pursuing B.Tech in CSE at Lovely Professional University with a focus on emerging web technologies.'
+      text: 'Currently pursuing B.Tech in CSE at Lovely Professional University with a focus on emerging web technologies and modern full-stack development.',
+      color: 'bg-blue-50 text-blue-600 border-blue-200'
     },
     {
       icon: FaLightbulb,
       title: 'Problem Solver',
-      text: 'Passionate about tackling complex logic and finding elegant solutions to real-world challenges.'
+      text: 'Passionate about tackling complex logic and finding elegant solutions to real-world challenges with over 1000+ problems solved across platforms.',
+      color: 'bg-amber-50 text-amber-600 border-amber-200'
     },
     {
       icon: FaRocket,
       title: 'Performance Focused',
-      text: 'Dedicated to building high-speed, scalable applications with clean, maintainable code architecture.'
+      text: 'Dedicated to building high-speed, scalable applications with clean, maintainable code architecture, robust APIs, and responsive design.',
+      color: 'bg-emerald-50 text-emerald-600 border-emerald-200'
     }
   ];
 
   return (
-    <section id="about" className="section-container relative">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-          {/* Visual Element */}
-          <div className="w-full lg:w-1/2 relative">
-            <div className="relative z-10 p-1 rounded-[2.5rem] bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 backdrop-blur-3xl border border-white/5">
-              <div className="bg-slate-900/40 rounded-[2.2rem] p-8 md:p-12 overflow-hidden">
-                <h3 className="text-3xl md:text-4xl font-black text-white mb-8">
-                  Engineering <span className="text-cyan-400">Experiences</span>, <br/>
-                  Not Just Code.
-                </h3>
-                <p className="text-slate-400 leading-relaxed mb-8 text-lg">
-                  I'm a Full Stack Developer who thrives on turning complex problems into simple, beautiful, and intuitive digital solutions. My journey is fueled by a curiosity for how things work and a drive to build tools that make an impact.
-                </p>
-                <div className="flex items-center gap-4 p-4 rounded-2xl bg-cyan-500/5 border border-cyan-500/10">
-                   <div className="w-12 h-12 rounded-full bg-cyan-500 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20">
-                      <FaHeart />
-                   </div>
-                   <div>
-                      <p className="text-white font-bold">Driven by Passion</p>
-                      <p className="text-slate-400 text-xs uppercase tracking-widest">Built with Purpose</p>
-                   </div>
-                </div>
-              </div>
-            </div>
-            {/* Background decorative shape */}
-            <div className="absolute -top-10 -left-10 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl"></div>
-          </div>
-
-          {/* Text Content */}
-          <div className="w-full lg:w-1/2">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-12 tracking-tight">
-               Discover <br/>
-               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">The Developer</span>
+    <section id="about" className="space-y-8">
+      {/* Philosophy Banner */}
+      <div className="glass-card rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-md relative overflow-hidden bg-gradient-to-r from-white via-indigo-50/20 to-white">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-8 space-y-4">
+            <span className="section-label">Engineering Philosophy</span>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              Engineering <span className="text-brand-600 underline decoration-cyan-400 decoration-wavy decoration-2">Experiences</span>, Not Just Code.
             </h2>
-            
-            <div className="space-y-8">
-              {qualities.map((item, i) => (
-                <div key={i} className="flex gap-6 group">
-                  <div className="w-14 h-14 shrink-0 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex items-center justify-center text-cyan-400 group-hover:border-cyan-500/50 group-hover:bg-cyan-500/10 transition-all duration-300">
-                    <item.icon className="text-2xl" />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold text-white mb-2">{item.title}</h4>
-                    <p className="text-slate-400 leading-relaxed">{item.text}</p>
-                  </div>
-                </div>
-              ))}
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              I'm a Full Stack Developer who thrives on turning complex problems into simple, beautiful, and intuitive digital solutions. My journey is fueled by a genuine curiosity for how things work and a relentless drive to build tools that make an impact.
+            </p>
+          </div>
+          <div className="lg:col-span-4 flex justify-start lg:justify-end">
+            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm w-full lg:w-auto">
+              <div className="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl shrink-0">
+                <FaHeart />
+              </div>
+              <div>
+                <p className="text-slate-900 font-bold text-sm">Driven by Passion</p>
+                <p className="text-slate-400 text-xs font-mono uppercase tracking-wider">Built with Purpose</p>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Section Header */}
+      <div className="text-center max-w-xl mx-auto space-y-2">
+        <span className="section-label">Core Strengths</span>
+        <h2 className="section-title">Discover The Developer</h2>
+        <div className="h-1 w-12 bg-brand-500 rounded-full mx-auto mt-2"></div>
+      </div>
+
+      {/* Qualities Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {qualities.map((item, i) => (
+          <div
+            key={i}
+            className="glass-card rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:border-brand-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+          >
+            <div>
+              <div className={`w-12 h-12 rounded-2xl ${item.color} flex items-center justify-center text-xl mb-5 shadow-sm border`}>
+                <item.icon />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">{item.text}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

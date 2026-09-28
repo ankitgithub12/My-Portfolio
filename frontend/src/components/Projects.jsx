@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaCheckCircle, FaLaptopCode } from 'react-icons/fa';
 
 const ProjectImage = ({ images, title }) => {
   const [currentImage, setCurrentImage] = React.useState(0);
@@ -13,53 +13,61 @@ const ProjectImage = ({ images, title }) => {
   }, [images]);
 
   return (
-    <div className="relative mb-6 overflow-hidden rounded-xl aspect-video border border-slate-700/50 group-hover:border-cyan-500/30 transition-colors">
-      {images.map((img, idx) => (
-        <img
-          key={idx}
-          src={img}
-          alt={`${title} - ${idx + 1}`}
-          className={`absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-all duration-1000 ${
-            idx === currentImage ? 'opacity-100' : 'opacity-0'
-          }`}
-        />
-      ))}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
-      
-      {/* Slider Indicators */}
-      {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
-          {images.map((_, idx) => (
-            <div
+    <div className="bg-gradient-to-br from-slate-100 to-indigo-50/50 p-4 sm:p-5 border-b border-slate-200">
+      <div className="w-full h-56 sm:h-64 rounded-xl bg-white border border-slate-200/90 shadow-sm overflow-hidden flex flex-col">
+        {/* Browser Frame UI */}
+        <div className="bg-slate-100 px-3 py-2 border-b border-slate-200 flex items-center justify-between shrink-0">
+          <div className="flex items-center space-x-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-rose-400 inline-block"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+          </div>
+          <span className="text-[11px] font-mono text-slate-500 bg-white px-3 py-0.5 rounded border border-slate-200 truncate max-w-[220px]">
+            {title}
+          </span>
+          <span className="text-[11px] text-slate-400 font-mono">https://</span>
+        </div>
+
+        {/* Carousel Image */}
+        <div className="flex-1 relative overflow-hidden bg-slate-900">
+          {images.map((img, idx) => (
+            <img
               key={idx}
-              className={`h-1 rounded-full transition-all duration-300 ${
-                idx === currentImage ? 'w-4 bg-cyan-400' : 'w-1.5 bg-white/30'
+              src={img}
+              alt={`${title} screenshot ${idx + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                idx === currentImage ? 'opacity-100' : 'opacity-0 pointer-events-none'
               }`}
             />
           ))}
+
+          {/* Slider Indicators */}
+          {images.length > 1 && (
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 bg-slate-900/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
+              {images.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentImage(idx)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    idx === currentImage ? 'w-4 bg-white' : 'w-1.5 bg-white/50'
+                  }`}
+                  aria-label={`Go to image ${idx + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
 
 const Projects = () => {
-  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
-  
-  const handleMouseMove = (e, index) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setMousePos({ x, y });
-    card.style.setProperty('--mouse-x', `${x}px`);
-    card.style.setProperty('--mouse-y', `${y}px`);
-  };
-
   const projects = [
     {
       title: 'SRIC School Website',
       period: 'Oct 2025 - Dec 2025',
+      badge: 'Full Stack MERN',
       description: [
         'Formulated and launched the official MERN-based website for SitaRam Inter College with responsive UI/UX, enhancing digital presence and improving administrative efficiency by 45%',
         'Engineered a full-stack MERN application using React reusable components and RESTful APIs to manage online admissions, inquiries, and fees, reducing manual work by 60%',
@@ -69,12 +77,13 @@ const Projects = () => {
       tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Tailwind', 'REST APIs'],
       github: 'https://github.com/ankitgithub12/Sitaram-Inter-College',
       live: 'https://sric-fdq2.onrender.com/',
-      gradient: 'from-cyan-500 to-blue-500',
-      images: ['/Home1.png', '/Home2.png','/admin1.png']
+      images: ['/Home1.png', '/Home2.png', '/admin1.png'],
+      badgeColor: 'bg-indigo-50 text-indigo-700 border-indigo-200'
     },
     {
       title: 'SlotSwap – Peer-to-Peer Scheduling App',
       period: 'Oct 2025',
+      badge: 'Real-Time Web App',
       description: [
         'Developed a full-stack MERN-based timeslot swapping platform with secure workflows, resulting in 50% improvement in scheduling efficiency',
         'Implemented real-time notifications using Socket.io, driving 40% increase in user engagement',
@@ -84,78 +93,92 @@ const Projects = () => {
       tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'JWT'],
       github: 'https://github.com/ankitgithub12/SlotSwapper',
       live: 'https://slotswapper-frontend-rtry.onrender.com/',
-      gradient: 'from-indigo-500 to-purple-500',
-      images: ['/slotswap1.png','/slotswap2.png','/slotswap3.png']
+      images: ['/slotswap1.png', '/slotswap2.png', '/slotswap3.png'],
+      badgeColor: 'bg-cyan-50 text-cyan-700 border-cyan-200'
     }
   ];
 
   return (
-    <section id="projects" className="section-container relative">
-      <div className="absolute top-1/2 left-0 w-72 h-72 bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen"></div>
-
-      <div className="text-center mb-16 relative">
-        <h2 className="section-title">Featured Projects</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto rounded-full mt-[-2rem]"></div>
+    <section id="projects" className="space-y-8">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <span className="section-label">Featured Work</span>
+          <h2 className="section-title flex items-center gap-2">
+            <FaLaptopCode className="text-brand-600 text-2xl" /> Featured Projects
+          </h2>
+        </div>
+        <p className="text-sm text-slate-500 max-w-sm">
+          Production-grade applications built with modern engineering best practices and deployed on cloud infrastructure.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {projects.map((project, index) => (
-          <div 
-            key={index} 
-            className="card group relative overflow-hidden"
-            onMouseMove={(e) => handleMouseMove(e, index)}
+          <div
+            key={index}
+            className="glass-card rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm flex flex-col justify-between hover:border-brand-300 transition-all duration-300 group"
           >
-            {/* Spotlight Effect */}
-            <div 
-              className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-              style={{
-                background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(6, 182, 212, 0.15), transparent 40%)`
-              }}
-            ></div>
-
-            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`}></div>
-
-            <div className="relative z-10 h-full flex flex-col">
+            <div>
               <ProjectImage images={project.images} title={project.title} />
 
-              <div className="flex flex-col sm:flex-row justify-between items-start mb-6 gap-2">
-                <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <span className="px-3 py-1 bg-slate-800 text-cyan-400 rounded-full text-xs font-semibold whitespace-nowrap border border-slate-700">
-                  {project.period}
-                </span>
-              </div>
+              <div className="p-6 sm:p-7 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+                    {project.title}
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${project.badgeColor}`}>
+                      {project.badge}
+                    </span>
+                    <span className="text-xs font-mono text-slate-400">
+                      {project.period}
+                    </span>
+                  </div>
+                </div>
 
-              <ul className="mb-8 space-y-3 flex-grow">
-                {project.description.map((item, idx) => (
-                  <li key={idx} className="flex items-start text-slate-400">
-                    <span className="text-cyan-500 mr-3 mt-1 text-lg leading-none">&bull;</span>
-                    <span className="text-sm leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
+                <ul className="space-y-2.5 pt-2">
+                  {project.description.map((item, idx) => (
+                    <li key={idx} className="flex items-start text-xs sm:text-sm text-slate-600 gap-2.5">
+                      <FaCheckCircle className="text-brand-500 mt-1 shrink-0 text-xs" />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              <div className="mt-auto">
-                <div className="flex flex-wrap gap-2 mb-8">
+                {/* Tech Pills */}
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
                   {project.tech.map((tech, idx) => (
-                    <span key={idx} className="bg-slate-800/80 text-slate-300 border border-slate-700/50 px-3 py-1.5 rounded-lg text-xs font-medium backdrop-blur-sm">
+                    <span
+                      key={idx}
+                      className="px-2.5 py-1 text-xs font-mono bg-slate-100 text-slate-700 rounded-md border border-slate-200/60"
+                    >
                       {tech}
                     </span>
                   ))}
                 </div>
-
-                <div className="flex space-x-4 pt-4 border-t border-slate-700/50">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center text-slate-300 hover:text-cyan-400 transition-colors duration-300 font-medium text-sm">
-                    <FaGithub className="mr-2 text-lg" /> Source Code
-                  </a>
-                  <a href={project.live} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center text-slate-300 hover:text-indigo-400 transition-colors duration-300 font-medium text-sm">
-                    <FaExternalLinkAlt className="mr-2 text-lg" /> Live Demo
-                  </a>
-                </div>
               </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="px-6 sm:px-7 pb-6 pt-2 flex items-center gap-4 border-t border-slate-100/80">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold text-center flex items-center justify-center gap-2 shadow-sm transition-all hover:border-slate-300"
+              >
+                <FaGithub className="text-sm" />
+                <span>Source Code</span>
+              </a>
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md shadow-brand-500/20 transition-all"
+              >
+                <FaExternalLinkAlt className="text-xs" />
+                <span>Live Demo</span>
+              </a>
             </div>
           </div>
         ))}

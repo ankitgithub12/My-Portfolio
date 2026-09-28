@@ -17,17 +17,17 @@ const CustomCursor = () => {
 
     const onMouseOver = (e) => {
       const target = e.target;
-      const isSearchable = 
-        target.tagName === 'A' || 
-        target.tagName === 'BUTTON' || 
-        target.closest('a') || 
+      const isSearchable =
+        target.tagName === 'A' ||
+        target.tagName === 'BUTTON' ||
+        target.closest('a') ||
         target.closest('button') ||
         target.classList.contains('cursor-pointer');
-      
+
       if (isSearchable) setIsHovering(true);
     };
 
-    const onMouseOut = (e) => {
+    const onMouseOut = () => {
       setIsHovering(false);
     };
 
@@ -52,16 +52,16 @@ const CustomCursor = () => {
     <>
       {/* Main Cursor Dot */}
       <div
-        className="fixed top-0 left-0 w-2 h-2 bg-cyan-400 rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100 ease-out"
+        className="fixed top-0 left-0 w-2 h-2 bg-brand-500 rounded-full pointer-events-none z-[9999] mix-blend-multiply transition-transform duration-100 ease-out"
         style={{
           transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%) scale(${isClicking ? 0.8 : 1})`,
         }}
       />
-      
+
       {/* Outer Ring */}
       <div
-        className={`fixed top-0 left-0 w-8 h-8 border border-cyan-400/50 rounded-full pointer-events-none z-[9998] transition-all duration-300 ease-out ${
-          isHovering ? 'scale-[2.5] bg-cyan-400/10 border-cyan-400' : 'scale-100'
+        className={`fixed top-0 left-0 w-8 h-8 border-2 border-brand-400/40 rounded-full pointer-events-none z-[9998] transition-all duration-300 ease-out ${
+          isHovering ? 'scale-[2.5] bg-brand-500/10 border-brand-400' : 'scale-100'
         }`}
         style={{
           transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`,
