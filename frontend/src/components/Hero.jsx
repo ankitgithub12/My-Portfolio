@@ -6,7 +6,7 @@ const Hero = ({ personalInfo }) => {
   const titles = [
     "Full Stack Developer",
     "MERN Stack Specialist",
-    "Competitive Programmer",
+    "Software Engineer",
     "Problem Solver",
     "Freelance Developer"
   ];

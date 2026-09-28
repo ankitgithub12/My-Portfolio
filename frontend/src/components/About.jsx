@@ -16,7 +16,7 @@ const About = () => {
       icon: FaLightbulb,
       title: 'Algorithmic Thinker',
       subtitle: '1000+ Problems Solved',
-      text: 'Passionate about tackling complex algorithmic challenges with elegant, optimal solutions across LeetCode, GeeksforGeeks, and competitive programming arenas.',
+      text: 'Passionate about tackling complex algorithmic challenges with elegant, optimal solutions across LeetCode, GeeksforGeeks, and technical problem-solving platforms.',
       gradient: 'from-amber-500 to-orange-500',
       badgeBg: 'bg-amber-50 text-amber-600 border-amber-200/80',
       glow: 'group-hover:shadow-amber-500/20'
