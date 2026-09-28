@@ -31,36 +31,41 @@ const Navbar = () => {
     <header className="sticky top-2 sm:top-4 z-50 px-2 sm:px-4 max-w-6xl mx-auto w-full">
       <nav
         aria-label="Main Navigation"
-        className={`glass-card rounded-2xl px-3.5 sm:px-5 py-2.5 sm:py-3 shadow-sm flex items-center justify-between border border-slate-200/80 transition-all duration-300 ${
-          isScrolled ? 'shadow-md shadow-slate-200/50 bg-white/95' : 'bg-white/85'
+        className={`glass-nav rounded-2xl px-3.5 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between transition-all duration-500 ${
+          isScrolled
+            ? 'shadow-xl shadow-slate-200/60 bg-white/90 border-white/90'
+            : 'shadow-md shadow-slate-200/40 bg-white/75 border-white/80'
         }`}
       >
         {/* Logo */}
-        <a className="flex items-center gap-2 group shrink-0" href="#home" aria-label="Ankit Kumar Home">
-          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white font-mono font-bold shadow-md shadow-brand-500/25 group-hover:scale-105 transition-transform text-xs sm:text-sm">
-            &lt;/&gt;
+        <a className="flex items-center gap-2.5 group shrink-0" href="#home" aria-label="Ankit Kumar Home">
+          <div className="relative">
+            <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-brand-600 via-indigo-500 to-cyan-400 opacity-60 blur-sm group-hover:opacity-100 transition-opacity"></div>
+            <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-indigo-500 flex items-center justify-center text-white font-mono font-bold shadow-md shadow-brand-500/25 group-hover:scale-105 transition-transform text-xs sm:text-sm">
+              &lt;/&gt;
+            </div>
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-slate-900 tracking-tight text-sm sm:text-base group-hover:text-brand-600 transition-colors">
+            <span className="font-extrabold text-slate-900 tracking-tight text-sm sm:text-base group-hover:text-brand-600 transition-colors">
               Ankit Kumar
             </span>
-            <span className="text-[9px] sm:text-[10px] font-mono font-medium text-slate-400 tracking-wide uppercase">
+            <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-slate-400 tracking-wide uppercase">
               Full Stack Dev
             </span>
           </div>
         </a>
 
-        {/* Desktop Menu Links (visible on xl screens to ensure zero crowding) */}
-        <div className="hidden xl:flex items-center space-x-3.5 2xl:space-x-5 text-xs font-semibold text-slate-600">
+        {/* Desktop Menu Links */}
+        <div className="hidden xl:flex items-center space-x-1 2xl:space-x-2 text-xs font-semibold text-slate-600">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               target={link.external ? "_blank" : "_self"}
               rel={link.external ? "noopener noreferrer" : ""}
-              className="hover:text-brand-600 transition-colors flex items-center gap-1 py-1"
+              className="px-2.5 py-1.5 rounded-lg hover:text-brand-600 hover:bg-white/80 hover:shadow-sm transition-all duration-200 flex items-center gap-1 border border-transparent hover:border-slate-200/60"
             >
-              {link.name}
+              <span>{link.name}</span>
               {link.external && <FaFileDownload className="text-[10px] text-brand-500" />}
             </a>
           ))}
@@ -70,7 +75,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2 sm:gap-3">
           <a
             href="#contact"
-            className="px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-white bg-slate-900 hover:bg-brand-600 rounded-xl transition-all shadow-sm hover:shadow-brand-500/20 active:scale-95 shrink-0"
+            className="shimmer-hover px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-slate-900 via-brand-800 to-slate-900 hover:from-brand-600 hover:to-indigo-600 rounded-xl transition-all shadow-md hover:shadow-brand-500/25 active:scale-95 shrink-0 border border-white/20"
           >
             Let's Talk
           </a>
@@ -78,7 +83,7 @@ const Navbar = () => {
           {/* Hamburger button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="xl:hidden inline-flex items-center justify-center p-2 rounded-xl text-slate-700 hover:text-brand-600 hover:bg-slate-100 focus:outline-none transition-colors border border-slate-200"
+            className="xl:hidden inline-flex items-center justify-center p-2 rounded-xl text-slate-700 hover:text-brand-600 hover:bg-white/90 focus:outline-none transition-colors border border-slate-200/80 shadow-sm"
             aria-label="Toggle Navigation Menu"
             aria-expanded={isOpen}
           >

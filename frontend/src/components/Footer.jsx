@@ -17,7 +17,7 @@ const Footer = ({ personalInfo }) => {
   const cleanPhone = personalInfo?.phone ? personalInfo.phone.replace(/[\s-]+/g, '') : '+916395204834';
 
   return (
-    <footer className="mt-16 sm:mt-20 border-t border-slate-200/80 bg-white/70 backdrop-blur-md">
+    <footer className="mt-16 sm:mt-24 border-t border-white/80 bg-white/75 backdrop-blur-2xl shadow-[0_-10px_35px_rgba(0,0,0,0.03)] relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
           {/* Brand Info */}

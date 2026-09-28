@@ -81,11 +81,13 @@ function App() {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden text-slate-800 bg-slate-50">
-      {/* Ambient Light Orbs */}
+      {/* Ambient Animated Light Orbs for Rich Glassmorphism Refraction */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute -top-32 left-1/4 w-[500px] h-[500px] bg-indigo-200/40 rounded-full blur-[120px] mix-blend-multiply"></div>
-        <div className="absolute top-1/3 -right-24 w-[450px] h-[450px] bg-cyan-100/60 rounded-full blur-[100px] mix-blend-multiply"></div>
-        <div className="absolute bottom-1/4 left-10 w-[550px] h-[550px] bg-violet-100/50 rounded-full blur-[130px] mix-blend-multiply"></div>
+        <div className="absolute -top-40 left-1/4 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-300/45 to-purple-300/40 rounded-full blur-[140px] mix-blend-multiply animate-blob"></div>
+        <div className="absolute top-1/4 -right-28 w-[550px] h-[550px] bg-gradient-to-br from-cyan-200/55 to-blue-200/45 rounded-full blur-[130px] mix-blend-multiply animate-blob-delayed"></div>
+        <div className="absolute top-1/2 -left-32 w-[650px] h-[650px] bg-gradient-to-tr from-violet-300/45 to-fuchsia-200/35 rounded-full blur-[150px] mix-blend-multiply animate-blob-reverse"></div>
+        <div className="absolute bottom-1/4 right-10 w-[550px] h-[550px] bg-gradient-to-bl from-rose-200/40 to-amber-100/45 rounded-full blur-[140px] mix-blend-multiply animate-blob"></div>
+        <div className="absolute -bottom-20 left-1/3 w-[500px] h-[500px] bg-gradient-to-tr from-emerald-200/35 to-teal-200/30 rounded-full blur-[130px] mix-blend-multiply animate-float-slow"></div>
       </div>
 
       <div className="relative z-10 bg-grid-pattern min-h-screen flex flex-col">

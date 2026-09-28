@@ -115,30 +115,33 @@ const Experience = () => {
         {experiences.map((exp, expIndex) => (
           <div
             key={expIndex}
-            className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm relative overflow-hidden space-y-6"
+            className="glass-card-premium rounded-3xl p-6 sm:p-9 border border-white/90 shadow-xl relative overflow-hidden space-y-7 group hover:shadow-2xl hover:shadow-slate-300/40 transition-all duration-300"
           >
+            {/* Top Specular Line */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-500 to-transparent opacity-75"></div>
+
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 border-b border-slate-200 pb-6">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-5 border-b border-slate-200/70 pb-6">
               <div className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white text-2xl shadow-md shadow-brand-500/20 shrink-0">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-cyan-500 flex items-center justify-center text-white text-2xl shadow-lg shadow-brand-500/25 shrink-0 transition-transform duration-300 group-hover:scale-105">
                   {expIndex === 0 ? <FaRocket /> : <FaBriefcase />}
                 </div>
                 <div>
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <h3 className="text-xl font-bold text-slate-900">{exp.company}</h3>
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">{exp.company}</h3>
+                    <span className="px-3 py-0.5 rounded-full text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200/80 shadow-xs font-mono">
                       {exp.type}
                     </span>
                   </div>
-                  <p className="text-brand-600 font-semibold text-sm mt-1 flex items-center gap-1.5">
-                    <FaStar className="text-xs text-brand-500" />
-                    {exp.role}
+                  <p className="text-brand-600 font-bold text-sm sm:text-base mt-1 flex items-center gap-1.5">
+                    <FaStar className="text-xs text-amber-500" />
+                    <span>{exp.role}</span>
                   </p>
                   <div className="flex items-center gap-4 text-xs font-mono text-slate-500 mt-2 flex-wrap">
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1.5 bg-white/70 px-2.5 py-1 rounded-md border border-slate-200/60 shadow-xs">
                       <FaCalendarAlt className="text-brand-500" /> {exp.period}
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1.5 bg-white/70 px-2.5 py-1 rounded-md border border-slate-200/60 shadow-xs">
                       <FaMapMarkerAlt className="text-indigo-500" /> {exp.location}
                     </span>
                   </div>
@@ -150,7 +153,7 @@ const Experience = () => {
                 {exp.technologies.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="px-2.5 py-1 text-xs font-mono bg-slate-100 text-slate-700 rounded-md border border-slate-200/60"
+                    className="px-2.5 py-1 text-xs font-mono font-medium bg-white/80 text-slate-700 rounded-lg border border-slate-200/70 shadow-xs hover:border-brand-300 transition-colors"
                   >
                     {tech}
                   </span>
@@ -160,35 +163,35 @@ const Experience = () => {
 
             {/* Key Projects */}
             <div>
-              <h4 className="text-sm font-bold uppercase tracking-wider text-slate-800 mb-4 flex items-center gap-2">
-                <FaLaptopCode className="text-brand-600" /> Key Projects
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-4 flex items-center gap-2 font-mono">
+                <FaLaptopCode className="text-brand-600 text-sm" /> Architecture & Key Projects
               </h4>
               <div className="space-y-4">
                 {exp.projects.map((project, idx) => (
                   <div
                     key={idx}
-                    className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 space-y-3"
+                    className="p-5 sm:p-6 rounded-2xl glass-card border border-white/90 shadow-md space-y-4 hover:shadow-lg transition-all"
                   >
-                    <div className="flex items-start justify-between gap-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                       <div className="flex-1">
-                        <h5 className="font-bold text-slate-900 text-base">{project.title}</h5>
+                        <h5 className="font-extrabold text-slate-900 text-base sm:text-lg">{project.title}</h5>
                         {project.tagline && (
-                          <p className="text-xs font-semibold text-brand-600 mt-0.5">{project.tagline}</p>
+                          <p className="text-xs font-bold text-brand-600 mt-1 font-mono">{project.tagline}</p>
                         )}
-                        <p className="text-slate-600 text-sm mt-1">{project.description}</p>
+                        <p className="text-slate-600 text-sm mt-1.5 leading-relaxed">{project.description}</p>
                       </div>
-                      <div className="flex items-center gap-2 shrink-0">
+                      <div className="flex items-center gap-2.5 shrink-0 self-start">
                         {project.live && (
                           <a
                             href={project.live}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 rounded-lg bg-white border border-slate-200 text-brand-600 hover:text-brand-700 shadow-sm text-xs flex items-center gap-1.5 font-semibold transition-all hover:border-brand-300"
+                            className="shimmer-hover px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white shadow-md shadow-brand-500/25 text-xs flex items-center gap-1.5 font-bold transition-all"
                             title="Visit Website"
                           >
-                            <FaGlobe className="text-[11px]" />
-                            <span>Visit Site</span>
-                            <FaExternalLinkAlt className="text-[9px]" />
+                            <FaGlobe className="text-xs" />
+                            <span>Visit Live</span>
+                            <FaExternalLinkAlt className="text-[10px]" />
                           </a>
                         )}
                         {project.github && (
@@ -196,21 +199,21 @@ const Experience = () => {
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 rounded-lg bg-white border border-slate-200 text-slate-700 hover:text-slate-900 shadow-sm text-xs flex items-center gap-1 font-semibold"
+                            className="px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-slate-950 hover:border-slate-300 shadow-sm text-xs flex items-center gap-1.5 font-bold transition-all"
                             title="Source Code"
                           >
-                            <FaCodeBranch className="text-[10px]" />
+                            <FaCodeBranch className="text-xs" />
                             <span>Code</span>
                           </a>
                         )}
                       </div>
                     </div>
 
-                    <ul className="space-y-2 pt-2 border-t border-slate-200/60">
+                    <ul className="space-y-2.5 pt-3 border-t border-slate-200/60">
                       {project.highlights.map((highlight, hIdx) => (
-                        <li key={hIdx} className="flex items-start text-xs sm:text-sm text-slate-600 gap-2">
-                          <FaCheckCircle className="text-emerald-500 mt-0.5 shrink-0 text-xs" />
-                          <span>{highlight}</span>
+                        <li key={hIdx} className="flex items-start text-xs sm:text-sm text-slate-600 gap-2.5">
+                          <FaCheckCircle className="text-emerald-500 mt-1 shrink-0 text-xs" />
+                          <span className="leading-relaxed">{highlight}</span>
                         </li>
                       ))}
                     </ul>
@@ -221,40 +224,40 @@ const Experience = () => {
 
             {/* Key Responsibilities */}
             <div>
-              <h4 className="text-sm font-bold uppercase tracking-wider text-slate-800 mb-3 flex items-center gap-2">
-                <FaUsers className="text-brand-600" /> Key Responsibilities & Architecture
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3.5 flex items-center gap-2 font-mono">
+                <FaUsers className="text-brand-600 text-sm" /> Core Responsibilities
               </h4>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {exp.responsibilities.map((resp, idx) => (
-                  <li key={idx} className="flex items-start gap-2 p-2.5 rounded-xl bg-white border border-slate-100 text-xs sm:text-sm text-slate-600">
+                  <li key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-white/75 backdrop-blur-md border border-white/90 text-xs sm:text-sm text-slate-700 shadow-xs hover:border-brand-200 transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-500 mt-2 shrink-0"></span>
-                    <span>{resp}</span>
+                    <span className="leading-relaxed">{resp}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Achievements */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-indigo-50/50 border border-indigo-100/80 space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-2">
-                <FaAward className="text-amber-500" /> Measurable Achievements & Challenges Solved
+            <div className="p-5 rounded-2xl bg-indigo-50/60 backdrop-blur-md border border-indigo-100/90 space-y-3">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-2 font-mono">
+                <FaAward className="text-amber-500 text-sm" /> Measurable Achievements & Technical Milestones
               </h4>
               <div className="space-y-2">
                 {exp.achievements.map((ach, idx) => (
-                  <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 bg-white/80 p-2.5 rounded-xl border border-indigo-100/60">
+                  <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700 bg-white/90 p-3 rounded-xl border border-indigo-100/70 shadow-xs">
                     <FaStar className="text-amber-400 text-xs shrink-0" />
-                    <span>{ach}</span>
+                    <span className="font-medium">{ach}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Learning & Impact */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                Learning & Impact
+            <div className="p-5 rounded-2xl glass-card border border-white/80">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2 font-mono">
+                Engineering Reflection & Impact
               </h4>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                 {exp.learningImpact}
               </p>
             </div>

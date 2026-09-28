@@ -56,28 +56,33 @@ const Contact = ({ personalInfo }) => {
   const cleanPhone = personalInfo?.phone ? personalInfo.phone.replace(/[\s-]+/g, '') : '+916395204834';
 
   return (
-    <section id="contact" className="space-y-8">
-      <div className="glass-card rounded-3xl p-5 sm:p-10 md:p-12 border border-slate-200/90 shadow-md text-center relative overflow-hidden bg-gradient-to-b from-white to-indigo-50/30">
-        <div className="max-w-2xl mx-auto space-y-4">
+    <section id="contact" className="space-y-8 relative z-10">
+      <div className="glass-card-premium rounded-3xl p-6 sm:p-11 md:p-14 border border-white/90 shadow-2xl text-center relative overflow-hidden">
+        {/* Top Specular Glow Line */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-500 to-transparent opacity-80"></div>
+        <div className="absolute -left-20 -top-20 w-72 h-72 bg-brand-400/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute -right-20 -bottom-20 w-72 h-72 bg-indigo-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="max-w-2xl mx-auto space-y-4 relative z-10">
           <span className="section-label">Get In Touch</span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Let's Build Something Exceptional Together
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+            Let's Build Something <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-600">Exceptional</span> Together
           </h2>
-          <p className="text-slate-600 text-xs sm:text-base leading-relaxed px-2">
+          <p className="text-slate-600 text-xs sm:text-base leading-relaxed px-2 font-normal">
             Have a project in mind, a freelance opportunity, or just want to connect over algorithms and modern web development? My inbox is always open!
           </p>
 
           {/* Quick Contact Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-6 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 pt-6 text-left">
             <a
-              className="p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-brand-300 shadow-sm transition-all group flex flex-col justify-between"
+              className="glass-card-hover glass-card p-4 sm:p-5 rounded-2xl border border-white/90 shadow-md transition-all group flex flex-col justify-between"
               href={`mailto:${personalInfo?.email || 'ankit639520@gmail.com'}`}
             >
-              <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center text-lg mb-3 group-hover:scale-105 transition-transform border border-rose-100">
+              <div className="w-11 h-11 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform border border-rose-100 shadow-sm">
                 <FaEnvelope />
               </div>
               <div>
-                <span className="text-xs text-slate-400 block font-mono">Email</span>
+                <span className="text-[11px] text-slate-400 block font-mono font-semibold uppercase">Email</span>
                 <span className="text-xs font-bold text-slate-800 break-all group-hover:text-brand-600 transition-colors">
                   {personalInfo?.email || 'ankit639520@gmail.com'}
                 </span>
@@ -85,26 +90,26 @@ const Contact = ({ personalInfo }) => {
             </a>
 
             <a
-              className="p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-brand-300 shadow-sm transition-all group flex flex-col justify-between"
+              className="glass-card-hover glass-card p-4 sm:p-5 rounded-2xl border border-white/90 shadow-md transition-all group flex flex-col justify-between"
               href={`tel:${cleanPhone}`}
             >
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-3 group-hover:scale-105 transition-transform border border-emerald-100">
+              <div className="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform border border-emerald-100 shadow-sm">
                 <FaPhone />
               </div>
               <div>
-                <span className="text-xs text-slate-400 block font-mono">Call / WhatsApp</span>
+                <span className="text-[11px] text-slate-400 block font-mono font-semibold uppercase">Call / WhatsApp</span>
                 <span className="text-xs font-bold text-slate-800 group-hover:text-brand-600 transition-colors">
                   {personalInfo?.phone || '+91 6395204834'}
                 </span>
               </div>
             </a>
 
-            <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex flex-col justify-between">
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-brand-600 flex items-center justify-center text-lg mb-3 border border-indigo-100">
+            <div className="glass-card-hover glass-card p-4 sm:p-5 rounded-2xl border border-white/90 shadow-md flex flex-col justify-between">
+              <div className="w-11 h-11 rounded-2xl bg-indigo-50 text-brand-600 flex items-center justify-center text-lg mb-3 border border-indigo-100 shadow-sm">
                 <FaMapMarkerAlt />
               </div>
               <div>
-                <span className="text-xs text-slate-400 block font-mono">Location</span>
+                <span className="text-[11px] text-slate-400 block font-mono font-semibold uppercase">Location</span>
                 <span className="text-xs font-bold text-slate-800">
                   {personalInfo?.location || 'Punjab, India'}
                 </span>
@@ -132,7 +137,7 @@ const Contact = ({ personalInfo }) => {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Ankit Kumar"
-                      className="w-full bg-white border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all text-sm"
+                      className="w-full bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl py-3.5 pl-11 pr-4 text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100/60 shadow-xs transition-all text-sm"
                     />
                   </div>
                 </div>
@@ -153,7 +158,7 @@ const Contact = ({ personalInfo }) => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="hello@example.com"
-                      className="w-full bg-white border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all text-sm"
+                      className="w-full bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl py-3.5 pl-11 pr-4 text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100/60 shadow-xs transition-all text-sm"
                     />
                   </div>
                 </div>
@@ -174,7 +179,7 @@ const Contact = ({ personalInfo }) => {
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="Project Inquiry / Job Opportunity"
-                    className="w-full bg-white border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all text-sm"
+                    className="w-full bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl py-3.5 pl-11 pr-4 text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100/60 shadow-xs transition-all text-sm"
                   />
                 </div>
               </div>
@@ -184,7 +189,7 @@ const Contact = ({ personalInfo }) => {
                   Your Message
                 </label>
                 <div className="relative group">
-                  <span className="absolute left-4 top-3.5 text-slate-400 group-focus-within:text-brand-500 transition-colors">
+                  <span className="absolute left-4 top-4 text-slate-400 group-focus-within:text-brand-500 transition-colors">
                     <FaCommentAlt className="text-sm" />
                   </span>
                   <textarea
@@ -195,7 +200,7 @@ const Contact = ({ personalInfo }) => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Tell me about your project or opportunity..."
-                    className="w-full bg-white border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all resize-none text-sm"
+                    className="w-full bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl py-3.5 pl-11 pr-4 text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100/60 shadow-xs transition-all resize-none text-sm"
                   ></textarea>
                 </div>
               </div>
@@ -203,29 +208,29 @@ const Contact = ({ personalInfo }) => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed text-sm"
+                className="shimmer-hover w-full py-4 bg-gradient-to-r from-brand-600 via-indigo-600 to-brand-700 hover:from-brand-500 hover:to-indigo-500 text-white font-extrabold rounded-2xl shadow-xl shadow-brand-500/30 hover:shadow-brand-500/50 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed text-sm border border-white/20"
               >
                 {submitting ? (
                   <>
                     <div className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    <span>Sending....</span>
+                    <span>Sending message....</span>
                   </>
                 ) : (
                   <>
                     <FaPaperPlane className="text-xs" />
-                    <span>Submit Form</span>
+                    <span>Send Message</span>
                   </>
                 )}
               </button>
 
               {result && (
                 <div
-                  className={`px-4 py-3 rounded-xl text-center text-sm font-medium transition-all ${
+                  className={`p-4 rounded-2xl text-center text-sm font-bold transition-all shadow-md ${
                     result === "Form Submitted Successfully"
-                      ? "bg-emerald-50 border border-emerald-200 text-emerald-700"
+                      ? "bg-emerald-50/90 border border-emerald-300 text-emerald-800"
                       : result === "Sending...."
-                      ? "bg-blue-50 border border-blue-200 text-blue-700"
-                      : "bg-rose-50 border border-rose-200 text-rose-600"
+                      ? "bg-blue-50/90 border border-blue-300 text-blue-800"
+                      : "bg-rose-50/90 border border-rose-300 text-rose-700"
                   }`}
                 >
                   {result === "Form Submitted Successfully" && "✓ "}
