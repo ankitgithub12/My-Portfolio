@@ -263,6 +263,22 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
 const Projects = () => {
   const projects = [
     {
+      title: 'B5 Eventory – Event Management Platform',
+      period: 'May 2026 - June 2026',
+      badge: 'Full Stack MERN & Real-Time',
+      description: [
+        'Architected a full-stack MERN-based event management platform featuring a comprehensive admin portal and custom planner, improving booking coordination and scheduling efficiency by 50%',
+        'Implemented Socket.IO-based real-time notifications for instant booking alerts, custom planner requests, and administrative notifications, increasing user engagement and interaction by 40%',
+        'Engineered a responsive React interface with JWT authentication, Cloudinary media management, and MongoDB Atlas database integration hosted on Hostinger, maintaining 99% platform reliability'
+      ],
+      tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'JWT', 'Tailwind CSS', 'Framer Motion', 'Cloudinary', 'Hostinger'],
+      github: 'https://github.com/ankitgithub12/B5-Event-Management-Website',
+      live: 'https://b5eventory.com/',
+      images: ['/b5eventory1.png'],
+      labels: ['Luxury Event Management Portal & Custom Planner'],
+      badgeColor: 'bg-purple-50 text-purple-700 border-purple-200'
+    },
+    {
       title: 'SRIC School Website',
       period: 'Oct 2025 - Dec 2025',
       badge: 'Full Stack MERN',
@@ -312,7 +328,7 @@ const Projects = () => {
           <div className="h-1 w-12 bg-gradient-to-r from-brand-500 to-indigo-500 rounded-full mt-2"></div>
         </div>
         <span className="glass-pill px-3.5 py-1 text-brand-700 text-xs font-bold rounded-full border border-brand-200/80 self-start font-mono shadow-xs shrink-0">
-          2 Flagship Apps
+          {projects.length} Flagship Apps
         </span>
       </div>
 
