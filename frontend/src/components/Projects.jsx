@@ -267,9 +267,9 @@ const Projects = () => {
       period: 'May 2026 - June 2026',
       badge: 'Full Stack MERN & Real-Time',
       description: [
-        'Architected a full-stack MERN-based event management platform featuring a comprehensive admin portal and custom planner, improving booking coordination and scheduling efficiency by 50%',
-        'Implemented Socket.IO-based real-time notifications for instant booking alerts, custom planner requests, and administrative notifications, increasing user engagement and interaction by 40%',
-        'Engineered a responsive React interface with JWT authentication, Cloudinary media management, and MongoDB Atlas database integration hosted on Hostinger, maintaining 99% platform reliability'
+        'Full-Stack Event Platform: Built an end-to-end MERN system with an admin portal and custom planner, boosting scheduling efficiency by 50%.',
+        'Real-Time Alert Pipeline: Integrated Socket.IO for instant booking dispatches and admin alerts, driving a 40% rise in user engagement.',
+        'Cloud & Media Architecture: Scaled with Cloudinary CDN media uploads, JWT role security, and MongoDB Atlas, maintaining 99% reliability.'
       ],
       tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'JWT', 'Tailwind CSS', 'Framer Motion', 'Cloudinary', 'Hostinger'],
       github: 'https://github.com/ankitgithub12/B5-Event-Management-Website',
@@ -283,10 +283,9 @@ const Projects = () => {
       period: 'Oct 2025 - Dec 2025',
       badge: 'Full Stack MERN',
       description: [
-        'Formulated and launched the official MERN-based website for SitaRam Inter College with responsive UI/UX, enhancing digital presence and improving administrative efficiency by 45%',
-        'Engineered a full-stack MERN application using React reusable components and RESTful APIs to manage online admissions, inquiries, and fees, reducing manual work by 60%',
-        'Architected a secure Admin Dashboard with JWT-based authentication and RBAC, minimizing unauthorized access by 90%',
-        'Optimized MongoDB schemas with Atlas, delivering 35% improvement in query performance'
+        'School Management Portal: Launched the official MERN web platform with online admissions, fee workflows, and responsive UI, cutting manual work by 60%.',
+        'Role-Based Admin Security: Built a secure admin dashboard with JWT authentication and RBAC, reducing unauthorized access attempts by 90%.',
+        'Schema & Query Optimization: Architected MongoDB Atlas schemas and RESTful APIs, delivering a 35% boost in database query speed.'
       ],
       tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Tailwind', 'REST APIs'],
       github: 'https://github.com/ankitgithub12/Sitaram-Inter-College',
@@ -300,10 +299,9 @@ const Projects = () => {
       period: 'Oct 2025',
       badge: 'Real-Time Web App',
       description: [
-        'Developed a full-stack MERN-based timeslot swapping platform with secure workflows, resulting in 50% improvement in scheduling efficiency',
-        'Implemented real-time notifications using Socket.io, driving 40% increase in user engagement',
-        'Deployed on Render with MongoDB Atlas and JWT authentication, maintaining 90% uptime reliability',
-        'Developed responsive interface using React Hooks and Context API, improving usability by 45%'
+        'P2P Scheduling Platform: Engineered a peer-to-peer timeslot swapping application with state workflows, improving scheduling efficiency by 50%.',
+        'Real-Time Socket Pipeline: Integrated Socket.IO live notifications for instantaneous slot exchange requests, boosting user engagement by 40%.',
+        'Cloud Deployment & Uptime: Deployed full-stack architecture on Render with MongoDB Atlas and JWT auth, maintaining 90%+ system reliability.'
       ],
       tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'JWT'],
       github: 'https://github.com/ankitgithub12/SlotSwapper',
@@ -365,12 +363,28 @@ const Projects = () => {
                 </div>
 
                 <ul className="space-y-2.5 pt-2">
-                  {project.description.map((item, idx) => (
-                    <li key={idx} className="flex items-start text-xs sm:text-sm text-slate-600 gap-2.5">
-                      <FaCheckCircle className="text-brand-500 mt-1 shrink-0 text-xs" />
-                      <span className="leading-relaxed">{item}</span>
-                    </li>
-                  ))}
+                  {project.description.map((item, idx) => {
+                    const colonIndex = item.indexOf(':');
+                    const hasLabel = colonIndex !== -1 && colonIndex < 35;
+                    const label = hasLabel ? item.slice(0, colonIndex) : null;
+                    const content = hasLabel ? item.slice(colonIndex + 1) : item;
+
+                    return (
+                      <li key={idx} className="flex items-start text-xs sm:text-sm text-slate-600 gap-2.5">
+                        <FaCheckCircle className="text-brand-500 mt-1 shrink-0 text-xs" />
+                        <span className="leading-relaxed">
+                          {label ? (
+                            <>
+                              <strong className="font-bold text-slate-900">{label}:</strong>
+                              {content}
+                            </>
+                          ) : (
+                            item
+                          )}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
 
                 {/* Tech Pills */}
