@@ -176,7 +176,7 @@ const Hero = ({ personalInfo }) => {
         </a>
         <a
           className="px-6 sm:px-7 py-3 sm:py-3.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-semibold rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 hover:border-slate-300 active:scale-95 text-xs sm:text-sm"
-          href="/General CV Template (approved) Ankit kumar (1).pdf"
+          href="/Ankit cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >

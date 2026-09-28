@@ -24,7 +24,7 @@ const Navbar = () => {
     { name: 'Stats', href: '#stats' },
     { name: 'Certifications', href: '#certifications' },
     { name: 'Contact', href: '#contact' },
-    { name: 'Resume', href: '/General CV Template (approved) Ankit kumar (1).pdf', external: true },
+    { name: 'Resume', href: '/Ankit cv.pdf', external: true },
   ];
 
   return (

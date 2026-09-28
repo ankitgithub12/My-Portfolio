@@ -8,7 +8,7 @@ const Education = () => {
       location: "Punjab, India",
       degree: "Bachelor of Technology - Computer Science and Engineering",
       period: "Aug' 23 - Present",
-      score: "CGPA: 7.52",
+      score: "CGPA: 7.73",
       icon: FaGraduationCap,
       color: "from-brand-600 to-indigo-600",
       iconBg: "bg-brand-50 text-brand-600",
