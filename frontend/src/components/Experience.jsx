@@ -1,17 +1,50 @@
 import React from 'react';
 import {
-  FaBriefcase, FaCalendarAlt, FaMapMarkerAlt, FaCode, FaAward,
+  FaBriefcase, FaCalendarAlt, FaMapMarkerAlt, FaAward,
   FaExternalLinkAlt, FaCheckCircle, FaStar, FaUsers, FaCodeBranch,
-  FaTh, FaHandshake, FaLaptopCode
+  FaHandshake, FaLaptopCode, FaGlobe
 } from 'react-icons/fa';
 
 const Experience = () => {
   const experiences = [
     {
+      company: "FREELANCE DEVELOPER",
+      role: "Freelance Full Stack Developer",
+      period: "July 2025 - Present",
+      location: "Remote",
+      type: "Self-Employed / Freelance",
+      badgeColor: "bg-brand-50 text-brand-700 border-brand-200",
+      technologies: ["React.js", "Node.js", "MongoDB", "Express.js", "Tailwind CSS", "REST APIs", "JWT"],
+      projects: [
+        {
+          title: "Bizreels Platform (bizreels.in)",
+          description: "Engineering and scaling the Bizreels platform (bizreels.in), building responsive, high-performance web interfaces and robust backend APIs:",
+          live: "https://bizreels.in",
+          github: null,
+          highlights: [
+            "Designing and developing core features for bizreels.in, ensuring modern, mobile-first responsive user experience",
+            "Architecting scalable RESTful APIs with Node.js and Express.js, implementing secure authentication and state management",
+            "Optimizing MongoDB database schemas and queries for fast content delivery and minimal latency",
+            "Managing deployment, cloud hosting, domain integration, and ongoing continuous feature rollouts"
+          ]
+        }
+      ],
+      responsibilities: [
+        "Translating product specifications into production-ready full-stack web applications",
+        "Implementing responsive and accessible interfaces with React.js and modern CSS frameworks",
+        "Managing end-to-end cloud deployment, SSL, and domain hosting on platforms like Render and Vercel",
+        "Providing ongoing technical consultation, code optimizations, and bug resolution"
+      ],
+      achievements: [
+        "Successfully launched and actively maintaining production deployments on bizreels.in",
+        "Delivered custom web applications with 100% on-time milestone completion and positive client feedback"
+      ],
+      learningImpact: "Working independently as a freelance developer on production platforms like bizreels.in has accelerated my full-cycle engineering skills, architectural decision-making, and client communication—delivering reliable web applications under real-world requirements."
+    },
+    {
       company: "EMOTE TECHNOLOGY",
       role: "Full Stack Developer Intern",
       period: "Feb 2026 - June 2026",
-      duration: "Completed in June 2026",
       location: "Remote",
       type: "Performance-based Internship",
       badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
@@ -44,42 +77,7 @@ const Experience = () => {
         "Received positive feedback from supervisor for code quality and problem-solving skills",
         "Actively contributed to both Job Portal and Company Dashboard throughout the internship"
       ],
-      learningImpact: "I completed my internship at EMOTE TECHNOLOGY, gaining hands-on experience in full-stack development using the MERN stack. Working on the Job Portal and Company Dashboard projects enhanced my skills in building scalable web applications, implementing authentication systems, and creating intuitive user interfaces. This experience strengthened my problem-solving abilities and taught me best practices in code organization and documentation."
-    },
-    {
-      company: "FREELANCE DEVELOPER",
-      role: "Freelance Full Stack Developer",
-      period: "June 2026 - Present",
-      duration: "Active",
-      location: "Remote",
-      type: "Self-Employed / Freelance",
-      badgeColor: "bg-brand-50 text-brand-700 border-brand-200",
-      technologies: ["React.js", "Node.js", "MongoDB", "Express.js", "Tailwind CSS", "REST APIs", "JWT"],
-      projects: [
-        {
-          title: "Custom Web Applications & Client Solutions",
-          description: "Architecting and delivering tailor-made full-stack web solutions and production applications for clients",
-          live: null,
-          github: null,
-          highlights: [
-            "Developing end-to-end full-stack web applications tailored to client business requirements and specifications",
-            "Architecting scalable backend APIs with Node.js and Express.js, implementing secure authentication and authorization",
-            "Creating pixel-perfect, responsive UI designs with React.js and modern CSS frameworks for optimal user experience",
-            "Managing complete project lifecycle from requirements gathering to cloud deployment and post-launch support"
-          ]
-        }
-      ],
-      responsibilities: [
-        "Translating client specifications into production-ready full-stack web applications",
-        "Implementing responsive and accessible interfaces with seamless state management",
-        "Deploying and managing web applications on cloud platforms like Render and Vercel",
-        "Providing ongoing technical consultation, code optimizations, and bug resolution"
-      ],
-      achievements: [
-        "Delivered custom web applications with 100% on-time milestone completion and positive client feedback",
-        "Maintained high coding standards, modular architecture, and comprehensive documentation"
-      ],
-      learningImpact: "Working independently as a freelance developer has accelerated my end-to-end engineering skills, client communication, and architecture decision-making—delivering reliable web applications under real-world requirements."
+      learningImpact: "Gained comprehensive hands-on experience in full-stack development using the MERN stack at EMOTE TECHNOLOGY. Working on the Job Portal and Company Dashboard projects enhanced my skills in building scalable web applications, implementing authentication systems, and creating intuitive user interfaces."
     }
   ];
 
@@ -107,14 +105,11 @@ const Experience = () => {
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 border-b border-slate-200 pb-6">
               <div className="flex items-start gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white text-2xl shadow-md shadow-brand-500/20 shrink-0">
-                  {expIndex === 0 ? <FaBriefcase /> : <FaHandshake />}
+                  {expIndex === 0 ? <FaHandshake /> : <FaBriefcase />}
                 </div>
                 <div>
                   <div className="flex items-center gap-3 flex-wrap">
                     <h3 className="text-xl font-bold text-slate-900">{exp.company}</h3>
-                    <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold border ${exp.badgeColor}`}>
-                      {exp.duration}
-                    </span>
                     <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
                       {exp.type}
                     </span>
@@ -169,11 +164,12 @@ const Experience = () => {
                             href={project.live}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 rounded-lg bg-white border border-slate-200 text-brand-600 hover:text-brand-700 shadow-sm text-xs flex items-center gap-1 font-semibold"
-                            title="Live Demo"
+                            className="p-2 rounded-lg bg-white border border-slate-200 text-brand-600 hover:text-brand-700 shadow-sm text-xs flex items-center gap-1.5 font-semibold"
+                            title="Visit Website"
                           >
-                            <span>Live</span>
-                            <FaExternalLinkAlt className="text-[10px]" />
+                            <FaGlobe className="text-[11px]" />
+                            <span>Visit Site</span>
+                            <FaExternalLinkAlt className="text-[9px]" />
                           </a>
                         )}
                         {project.github && (
