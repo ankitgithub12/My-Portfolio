@@ -8,49 +8,48 @@ const Contact = ({ personalInfo }) => {
     subject: '',
     message: ''
   });
-  const [status, setStatus] = useState({
-    submitting: false,
-    success: false,
-    error: null
-  });
+  const [result, setResult] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus({ submitting: true, success: false, error: null });
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setSubmitting(true);
+    setResult("Sending....");
 
     try {
-      const dataToSubmit = new FormData(e.target);
-      dataToSubmit.append(
+      const formDataObj = new FormData(event.target);
+      formDataObj.append(
         "access_key",
-        personalInfo?.web3forms_key || "2513f572-cf56-42fc-a0f1-6780ec683b54"
+        personalInfo?.web3forms_key || "fe4c7d08-3bfe-4218-8ce4-d179ad10bd39"
       );
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: dataToSubmit
+        body: formDataObj
       });
 
       const data = await response.json();
 
       if (data.success) {
-        setStatus({ submitting: false, success: true, error: null });
+        setResult("Form Submitted Successfully");
+        event.target.reset();
         setFormData({ name: '', email: '', subject: '', message: '' });
-        setTimeout(() => setStatus(prev => ({ ...prev, success: false })), 5000);
+        setTimeout(() => {
+          setResult(prev => (prev === "Form Submitted Successfully" ? "" : prev));
+        }, 6000);
       } else {
-        throw new Error(data.message || 'Submission failed');
+        setResult(data.message || "Error");
       }
     } catch (err) {
-      console.error('Contact form error:', err);
-      setStatus({
-        submitting: false,
-        success: false,
-        error: err.message || 'Something went wrong. Please try again later.'
-      });
+      console.error("Web3Forms error:", err);
+      setResult("Error submitting form. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -115,7 +114,7 @@ const Contact = ({ personalInfo }) => {
 
           {/* Contact Form */}
           <div className="pt-6 sm:pt-8 text-left">
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={onSubmit} className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label htmlFor="name" className="text-xs font-bold text-slate-700 ml-1">
@@ -203,27 +202,34 @@ const Contact = ({ personalInfo }) => {
 
               <button
                 type="submit"
-                disabled={status.submitting}
+                disabled={submitting}
                 className="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed text-sm"
               >
-                {status.submitting ? (
-                  <div className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                {submitting ? (
+                  <>
+                    <div className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <span>Sending....</span>
+                  </>
                 ) : (
                   <>
                     <FaPaperPlane className="text-xs" />
-                    <span>Send Message</span>
+                    <span>Submit Form</span>
                   </>
                 )}
               </button>
 
-              {status.success && (
-                <div className="bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-xl text-center text-sm">
-                  ✓ Thank you! Your message has been sent successfully.
-                </div>
-              )}
-              {status.error && (
-                <div className="bg-rose-50 border border-rose-200 text-rose-600 px-4 py-3 rounded-xl text-center text-sm">
-                  {status.error}
+              {result && (
+                <div
+                  className={`px-4 py-3 rounded-xl text-center text-sm font-medium transition-all ${
+                    result === "Form Submitted Successfully"
+                      ? "bg-emerald-50 border border-emerald-200 text-emerald-700"
+                      : result === "Sending...."
+                      ? "bg-blue-50 border border-blue-200 text-blue-700"
+                      : "bg-rose-50 border border-rose-200 text-rose-600"
+                  }`}
+                >
+                  {result === "Form Submitted Successfully" && "✓ "}
+                  <span>{result}</span>
                 </div>
               )}
             </form>

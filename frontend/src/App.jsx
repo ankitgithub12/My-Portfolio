@@ -76,7 +76,7 @@ function App() {
     leetcode: 'https://leetcode.com/u/Ankit639520/',
     gfg: 'https://www.geeksforgeeks.org/profile/ankit6ewub',
     location: 'Punjab, India',
-    web3forms_key: '2513f572-cf56-42fc-a0f1-6780ec683b54'
+    web3forms_key: 'fe4c7d08-3bfe-4218-8ce4-d179ad10bd39'
   };
 
   return (
