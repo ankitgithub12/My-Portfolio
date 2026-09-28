@@ -2,7 +2,8 @@ import React from 'react';
 import {
   FaBriefcase, FaCalendarAlt, FaMapMarkerAlt, FaAward,
   FaExternalLinkAlt, FaCheckCircle, FaStar, FaCodeBranch,
-  FaGlobe, FaRocket, FaLaptopCode
+  FaGlobe, FaRocket, FaLaptopCode, FaBolt, FaWhatsapp,
+  FaChartLine, FaLock
 } from 'react-icons/fa';
 
 const Experience = () => {
@@ -40,9 +41,9 @@ const Experience = () => {
         "Architected 3-in-1 unified account switching (Customer, Merchant, Creator), JWT RBAC middleware, and Razorpay recurring subscription billing tiers."
       ],
       milestones: [
-        "🚀 Live Production at bizreels.in",
-        "⚡ Sub-Second Geospatial Search",
-        "💬 Automated WhatsApp Lead Dispatch"
+        { label: "Live Production at bizreels.in", icon: FaRocket, color: "text-rose-500", bg: "bg-rose-50/80 border-rose-200/80" },
+        { label: "Sub-Second Geospatial Search", icon: FaBolt, color: "text-amber-500", bg: "bg-amber-50/80 border-amber-200/80" },
+        { label: "Automated WhatsApp Lead Dispatch", icon: FaWhatsapp, color: "text-emerald-500", bg: "bg-emerald-50/80 border-emerald-200/80" }
       ]
     },
     {
@@ -76,9 +77,9 @@ const Experience = () => {
         "Built interactive analytics visualization with Recharts for hiring metrics and integrated real-time notifications for status updates."
       ],
       milestones: [
-        "📈 30% DB Query Optimization",
-        "🔒 Full JWT RBAC & ATS Workflow",
-        "⚡ Real-Time Notification Pipeline"
+        { label: "30% DB Query Optimization", icon: FaChartLine, color: "text-emerald-500", bg: "bg-emerald-50/80 border-emerald-200/80" },
+        { label: "Full JWT RBAC & ATS Workflow", icon: FaLock, color: "text-indigo-500", bg: "bg-indigo-50/80 border-indigo-200/80" },
+        { label: "Real-Time Notification Pipeline", icon: FaBolt, color: "text-cyan-500", bg: "bg-cyan-50/80 border-cyan-200/80" }
       ]
     }
   ];
@@ -208,14 +209,18 @@ const Experience = () => {
 
             {/* Milestones / Impact Strip */}
             <div className="flex flex-wrap gap-2.5 pt-2 border-t border-slate-200/60">
-              {exp.milestones.map((milestone, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1.5 rounded-xl bg-indigo-50/70 border border-indigo-100/90 text-indigo-900 text-xs font-bold font-mono shadow-xs"
-                >
-                  {milestone}
-                </span>
-              ))}
+              {exp.milestones.map((milestone, idx) => {
+                const IconComponent = milestone.icon;
+                return (
+                  <span
+                    key={idx}
+                    className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border text-slate-800 text-xs font-bold font-mono shadow-xs hover:scale-105 transition-all ${milestone.bg}`}
+                  >
+                    {IconComponent && <IconComponent className={`text-xs ${milestone.color} shrink-0`} />}
+                    <span>{milestone.label}</span>
+                  </span>
+                );
+              })}
             </div>
           </div>
         ))}
