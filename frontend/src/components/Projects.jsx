@@ -89,7 +89,7 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
 
           {/* Screenshot Viewport (Optimized 16:9 ratio with object-top for pristine header & layout visibility) */}
           <div
-            className="relative w-full aspect-[16/9] bg-slate-950 overflow-hidden group/viewport cursor-pointer"
+            className="relative w-full aspect-[16/9] bg-slate-100 overflow-hidden group/viewport cursor-pointer"
             onClick={() => setIsModalOpen(true)}
           >
             {images && images.map((img, idx) => (
@@ -107,7 +107,7 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
             ))}
 
             {/* Subtle Gradient Shadow on hover for controls */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover/viewport:opacity-100 transition-opacity pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent opacity-0 group-hover/viewport:opacity-100 transition-opacity pointer-events-none" />
 
             {/* Left/Right Navigation Arrows */}
             {images && images.length > 1 && (
@@ -115,7 +115,7 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
                 <button
                   type="button"
                   onClick={handlePrev}
-                  className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-brand-600 text-white flex items-center justify-center backdrop-blur-md shadow-lg border border-white/20 opacity-80 sm:opacity-0 sm:group-hover/viewport:opacity-100 transition-all z-20 hover:scale-110 active:scale-95"
+                  className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 hover:bg-brand-600 text-slate-700 hover:text-white flex items-center justify-center backdrop-blur-md shadow-md border border-slate-200/80 opacity-90 sm:opacity-0 sm:group-hover/viewport:opacity-100 transition-all z-20 hover:scale-110 active:scale-95"
                   aria-label="Previous screenshot"
                 >
                   <FaChevronLeft className="text-xs -ml-0.5" />
@@ -123,7 +123,7 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-brand-600 text-white flex items-center justify-center backdrop-blur-md shadow-lg border border-white/20 opacity-80 sm:opacity-0 sm:group-hover/viewport:opacity-100 transition-all z-20 hover:scale-110 active:scale-95"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 hover:bg-brand-600 text-slate-700 hover:text-white flex items-center justify-center backdrop-blur-md shadow-md border border-slate-200/80 opacity-90 sm:opacity-0 sm:group-hover/viewport:opacity-100 transition-all z-20 hover:scale-110 active:scale-95"
                   aria-label="Next screenshot"
                 >
                   <FaChevronRight className="text-xs -mr-0.5" />
@@ -133,12 +133,12 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
 
             {/* Slide Label & Counter */}
             <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between z-20 pointer-events-none">
-              <span className="text-[11px] font-medium text-white/90 bg-slate-950/80 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/10 shadow-sm truncate max-w-[200px]">
+              <span className="text-[11px] font-semibold text-slate-800 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-slate-200/80 shadow-sm truncate max-w-[200px]">
                 {labels[currentImage] || `Screen ${currentImage + 1}`}
               </span>
 
               {images && images.length > 1 && (
-                <div className="flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-sm pointer-events-auto">
+                <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-200/80 shadow-sm pointer-events-auto">
                   {images.map((_, idx) => (
                     <button
                       key={idx}
@@ -147,12 +147,12 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
                         setCurrentImage(idx);
                       }}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
-                        idx === currentImage ? 'w-5 bg-brand-400' : 'w-1.5 bg-white/40 hover:bg-white/80'
+                        idx === currentImage ? 'w-5 bg-brand-600' : 'w-1.5 bg-slate-300 hover:bg-slate-500'
                       }`}
                       aria-label={`Jump to image ${idx + 1}`}
                     />
                   ))}
-                  <span className="text-[10px] text-white/70 font-mono ml-1">
+                  <span className="text-[10px] text-slate-600 font-mono font-bold ml-1">
                     {currentImage + 1}/{images.length}
                   </span>
                 </div>
@@ -161,8 +161,8 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
 
             {/* Quick Click-to-Expand Badge */}
             <div className="absolute top-2.5 right-2.5 z-20 opacity-0 group-hover/viewport:opacity-100 transition-opacity">
-              <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-white bg-slate-950/85 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15 shadow-md">
-                <FaExpand className="text-[9px] text-brand-300" /> Click to enlarge
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-slate-800 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-200/80 shadow-md">
+                <FaExpand className="text-[9px] text-brand-600" /> Click to enlarge
               </span>
             </div>
           </div>
@@ -172,89 +172,88 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
       {/* High-Resolution Fullscreen Modal / Lightbox */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-3 sm:p-6 animate-fade-in"
+          className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xl flex flex-col items-center justify-center p-3 sm:p-6 animate-fade-in"
           onClick={() => setIsModalOpen(false)}
         >
-          {/* Modal Header */}
+          {/* Modal Container */}
           <div
-            className="w-full max-w-5xl flex items-center justify-between text-white pb-3 select-none"
+            className="w-full max-w-5xl bg-white/95 backdrop-blur-2xl rounded-3xl border border-white/80 shadow-2xl shadow-indigo-950/15 p-4 sm:p-6 flex flex-col gap-4 relative animate-scale-up"
             onClick={(e) => e.stopPropagation()}
           >
-            <div>
-              <h4 className="text-base sm:text-lg font-bold flex items-center gap-2">
-                <span>{title}</span>
-                <span className="text-xs font-mono font-normal text-slate-400">
-                  ({labels[currentImage] || `Screenshot ${currentImage + 1}`})
-                </span>
-              </h4>
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 select-none">
+              <div>
+                <h4 className="text-base sm:text-lg font-bold text-slate-900 flex flex-wrap items-center gap-2">
+                  <span>{title}</span>
+                  <span className="text-xs font-mono font-semibold text-brand-700 bg-brand-50/90 px-2.5 py-0.5 rounded-full border border-brand-200/80">
+                    {labels[currentImage] || `Screenshot ${currentImage + 1}`}
+                  </span>
+                </h4>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="w-9 h-9 rounded-full bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-600 border border-slate-200/80 flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xs"
+                  aria-label="Close Preview"
+                >
+                  <FaTimes />
+                </button>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setIsModalOpen(false)}
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all"
-                aria-label="Close Preview"
-              >
-                <FaTimes />
-              </button>
+
+            {/* Modal Image Viewport */}
+            <div className="relative w-full max-h-[75vh] flex items-center justify-center rounded-2xl overflow-hidden border border-slate-200/80 shadow-inner bg-slate-100/70 p-2 sm:p-3">
+              <img
+                src={images[currentImage]}
+                alt={`${title} Full Preview`}
+                className="w-full h-auto max-h-[70vh] object-contain rounded-xl shadow-sm"
+              />
+
+              {/* Modal Navigation Arrows */}
+              {images.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={handlePrev}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 hover:bg-brand-600 text-slate-700 hover:text-white flex items-center justify-center backdrop-blur-md shadow-lg border border-slate-200/80 transition-all hover:scale-110 active:scale-95"
+                    aria-label="Previous Screenshot"
+                  >
+                    <FaChevronLeft />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 hover:bg-brand-600 text-slate-700 hover:text-white flex items-center justify-center backdrop-blur-md shadow-lg border border-slate-200/80 transition-all hover:scale-110 active:scale-95"
+                    aria-label="Next Screenshot"
+                  >
+                    <FaChevronRight />
+                  </button>
+                </>
+              )}
             </div>
-          </div>
 
-          {/* Modal Content */}
-          <div
-            className="relative w-full max-w-5xl max-h-[80vh] flex items-center justify-center rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-slate-900"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={images[currentImage]}
-              alt={`${title} Full Preview`}
-              className="w-full h-auto max-h-[78vh] object-contain"
-            />
-
-            {/* Modal Navigation Arrows */}
+            {/* Modal Bottom Controls */}
             {images.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  onClick={handlePrev}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-950/80 hover:bg-brand-600 text-white flex items-center justify-center backdrop-blur-md shadow-xl border border-white/20 transition-all hover:scale-110 active:scale-95"
-                  aria-label="Previous Screenshot"
-                >
-                  <FaChevronLeft />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-950/80 hover:bg-brand-600 text-white flex items-center justify-center backdrop-blur-md shadow-xl border border-white/20 transition-all hover:scale-110 active:scale-95"
-                  aria-label="Next Screenshot"
-                >
-                  <FaChevronRight />
-                </button>
-              </>
+              <div className="flex items-center justify-center gap-2 pt-1">
+                <div className="flex items-center gap-2 bg-slate-100/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-slate-200/80 shadow-xs">
+                  {images.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentImage(idx)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        idx === currentImage ? 'w-6 bg-brand-600' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                      }`}
+                      aria-label={`Jump to image ${idx + 1}`}
+                    />
+                  ))}
+                  <span className="text-xs text-slate-700 font-mono font-bold ml-2">
+                    {currentImage + 1} of {images.length}
+                  </span>
+                </div>
+              </div>
             )}
           </div>
-
-          {/* Modal Dots Navigation */}
-          {images.length > 1 && (
-            <div
-              className="flex items-center gap-2 mt-4 bg-slate-900/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {images.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentImage(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    idx === currentImage ? 'w-6 bg-brand-400' : 'w-2 bg-white/40 hover:bg-white/80'
-                  }`}
-                  aria-label={`Jump to image ${idx + 1}`}
-                />
-              ))}
-              <span className="text-xs text-white/70 font-mono ml-2">
-                {currentImage + 1} of {images.length}
-              </span>
-            </div>
-          )}
         </div>
       )}
     </>
