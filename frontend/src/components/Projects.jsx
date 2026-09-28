@@ -1,102 +1,268 @@
-import React from 'react';
-import { FaGithub, FaExternalLinkAlt, FaCheckCircle, FaLaptopCode, FaGlobe } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import {
+  FaGithub,
+  FaExternalLinkAlt,
+  FaCheckCircle,
+  FaLaptopCode,
+  FaGlobe,
+  FaChevronLeft,
+  FaChevronRight,
+  FaExpand,
+  FaTimes
+} from 'react-icons/fa';
 
-const ProjectImage = ({ images, title }) => {
-  const [currentImage, setCurrentImage] = React.useState(0);
+const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  React.useEffect(() => {
-    if (!images || images.length <= 1) return;
+  useEffect(() => {
+    if (!images || images.length <= 1 || isPaused || isModalOpen) return;
     const timer = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 4000);
+    }, 4500);
     return () => clearInterval(timer);
-  }, [images]);
+  }, [images, isPaused, isModalOpen]);
+
+  // Handle escape key to close lightbox modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsModalOpen(false);
+      if (isModalOpen && images && images.length > 1) {
+        if (e.key === 'ArrowLeft') {
+          setCurrentImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+        } else if (e.key === 'ArrowRight') {
+          setCurrentImage((prev) => (prev + 1) % images.length);
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isModalOpen, images]);
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    setCurrentImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    setCurrentImage((prev) => (prev + 1) % images.length);
+  };
+
+  // Extract clean host name for the mock browser address bar
+  const displayHost = liveUrl
+    ? liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')
+    : 'localhost:3000';
 
   return (
-    <div className="bg-gradient-to-br from-slate-100 to-indigo-50/50 p-4 sm:p-5 border-b border-slate-200">
-      <div className="w-full h-56 sm:h-64 rounded-xl bg-white border border-slate-200/90 shadow-sm overflow-hidden flex flex-col">
-        {/* Browser Frame UI */}
-        <div className="bg-slate-100 px-3 py-2 border-b border-slate-200 flex items-center justify-between shrink-0">
-          <div className="flex items-center space-x-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-rose-400 inline-block"></span>
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+    <>
+      <div className="bg-gradient-to-br from-slate-100 via-slate-50 to-indigo-50/40 p-3 sm:p-5 border-b border-slate-200">
+        <div
+          className="w-full rounded-2xl bg-white border border-slate-300/80 shadow-md shadow-slate-200/50 overflow-hidden flex flex-col transition-all duration-300 hover:shadow-lg"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* macOS Browser Chrome Bar */}
+          <div className="bg-slate-100/90 backdrop-blur-sm px-3.5 py-2.5 border-b border-slate-200 flex items-center justify-between shrink-0 select-none">
+            <div className="flex items-center space-x-1.5">
+              <span className="w-3 h-3 rounded-full bg-rose-400/90 inline-block border border-rose-500/20"></span>
+              <span className="w-3 h-3 rounded-full bg-amber-400/90 inline-block border border-amber-500/20"></span>
+              <span className="w-3 h-3 rounded-full bg-emerald-400/90 inline-block border border-emerald-500/20"></span>
+            </div>
+            <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-600 bg-white px-3 py-1 rounded-md border border-slate-200/80 shadow-inner max-w-[60%] sm:max-w-xs truncate">
+              <span className="text-emerald-500 font-semibold">https://</span>
+              <span className="truncate">{displayHost}</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                title="View Full Screenshot"
+                aria-label="View Full Screenshot"
+                className="p-1.5 text-slate-500 hover:text-brand-600 hover:bg-slate-200/60 rounded-md transition-colors text-xs"
+              >
+                <FaExpand />
+              </button>
+            </div>
           </div>
-          <span className="text-[11px] font-mono text-slate-500 bg-white px-3 py-0.5 rounded border border-slate-200 truncate max-w-[220px]">
-            {title}
-          </span>
-          <span className="text-[11px] text-slate-400 font-mono">https://</span>
-        </div>
 
-        {/* Carousel Image or Branded Showcase */}
-        <div className="flex-1 relative overflow-hidden bg-slate-900 flex items-center justify-center">
-          {images && images.length > 0 ? (
-            <>
-              {images.map((img, idx) => (
-                <img
-                  key={idx}
-                  src={img}
-                  alt={`${title} screenshot ${idx + 1}`}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                    idx === currentImage ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                  }`}
-                />
-              ))}
+          {/* Screenshot Viewport (Optimized 16:9 ratio with object-top for pristine header & layout visibility) */}
+          <div
+            className="relative w-full aspect-[16/9] bg-slate-950 overflow-hidden group/viewport cursor-pointer"
+            onClick={() => setIsModalOpen(true)}
+          >
+            {images && images.map((img, idx) => (
+              <img
+                key={idx}
+                src={img}
+                alt={`${title} preview ${idx + 1}`}
+                className={`absolute inset-0 w-full h-full object-cover object-top transition-all duration-700 ${
+                  idx === currentImage
+                    ? 'opacity-100 scale-100'
+                    : 'opacity-0 scale-[1.02] pointer-events-none'
+                }`}
+                loading="lazy"
+              />
+            ))}
 
-              {images.length > 1 && (
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 bg-slate-900/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
+            {/* Subtle Gradient Shadow on hover for controls */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover/viewport:opacity-100 transition-opacity pointer-events-none" />
+
+            {/* Left/Right Navigation Arrows */}
+            {images && images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-brand-600 text-white flex items-center justify-center backdrop-blur-md shadow-lg border border-white/20 opacity-80 sm:opacity-0 sm:group-hover/viewport:opacity-100 transition-all z-20 hover:scale-110 active:scale-95"
+                  aria-label="Previous screenshot"
+                >
+                  <FaChevronLeft className="text-xs -ml-0.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-brand-600 text-white flex items-center justify-center backdrop-blur-md shadow-lg border border-white/20 opacity-80 sm:opacity-0 sm:group-hover/viewport:opacity-100 transition-all z-20 hover:scale-110 active:scale-95"
+                  aria-label="Next screenshot"
+                >
+                  <FaChevronRight className="text-xs -mr-0.5" />
+                </button>
+              </>
+            )}
+
+            {/* Slide Label & Counter */}
+            <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between z-20 pointer-events-none">
+              <span className="text-[11px] font-medium text-white/90 bg-slate-950/80 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/10 shadow-sm truncate max-w-[200px]">
+                {labels[currentImage] || `Screen ${currentImage + 1}`}
+              </span>
+
+              {images && images.length > 1 && (
+                <div className="flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-sm pointer-events-auto">
                   {images.map((_, idx) => (
                     <button
                       key={idx}
-                      onClick={() => setCurrentImage(idx)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentImage(idx);
+                      }}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
-                        idx === currentImage ? 'w-4 bg-white' : 'w-1.5 bg-white/50'
+                        idx === currentImage ? 'w-5 bg-brand-400' : 'w-1.5 bg-white/40 hover:bg-white/80'
                       }`}
-                      aria-label={`Go to image ${idx + 1}`}
+                      aria-label={`Jump to image ${idx + 1}`}
                     />
                   ))}
+                  <span className="text-[10px] text-white/70 font-mono ml-1">
+                    {currentImage + 1}/{images.length}
+                  </span>
                 </div>
               )}
-            </>
-          ) : (
-            <div className="p-6 text-center space-y-3 z-10 w-full">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-rose-500 flex items-center justify-center text-white text-2xl mx-auto shadow-lg shadow-brand-500/30">
-                🚀
-              </div>
-              <div>
-                <span className="text-white font-black text-lg block tracking-tight">BizReels</span>
-                <span className="text-slate-300 text-xs font-mono">Hyperlocal Video Commerce & Marketplace</span>
-              </div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[11px] font-semibold">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span>Live at bizreels.in</span>
+            </div>
+
+            {/* Quick Click-to-Expand Badge */}
+            <div className="absolute top-2.5 right-2.5 z-20 opacity-0 group-hover/viewport:opacity-100 transition-opacity">
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-white bg-slate-950/85 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15 shadow-md">
+                <FaExpand className="text-[9px] text-brand-300" /> Click to enlarge
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* High-Resolution Fullscreen Modal / Lightbox */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-3 sm:p-6 animate-fade-in"
+          onClick={() => setIsModalOpen(false)}
+        >
+          {/* Modal Header */}
+          <div
+            className="w-full max-w-5xl flex items-center justify-between text-white pb-3 select-none"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div>
+              <h4 className="text-base sm:text-lg font-bold flex items-center gap-2">
+                <span>{title}</span>
+                <span className="text-xs font-mono font-normal text-slate-400">
+                  ({labels[currentImage] || `Screenshot ${currentImage + 1}`})
+                </span>
+              </h4>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all"
+                aria-label="Close Preview"
+              >
+                <FaTimes />
+              </button>
+            </div>
+          </div>
+
+          {/* Modal Content */}
+          <div
+            className="relative w-full max-w-5xl max-h-[80vh] flex items-center justify-center rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-slate-900"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={images[currentImage]}
+              alt={`${title} Full Preview`}
+              className="w-full h-auto max-h-[78vh] object-contain"
+            />
+
+            {/* Modal Navigation Arrows */}
+            {images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-950/80 hover:bg-brand-600 text-white flex items-center justify-center backdrop-blur-md shadow-xl border border-white/20 transition-all hover:scale-110 active:scale-95"
+                  aria-label="Previous Screenshot"
+                >
+                  <FaChevronLeft />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-950/80 hover:bg-brand-600 text-white flex items-center justify-center backdrop-blur-md shadow-xl border border-white/20 transition-all hover:scale-110 active:scale-95"
+                  aria-label="Next Screenshot"
+                >
+                  <FaChevronRight />
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Modal Dots Navigation */}
+          {images.length > 1 && (
+            <div
+              className="flex items-center gap-2 mt-4 bg-slate-900/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {images.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentImage(idx)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    idx === currentImage ? 'w-6 bg-brand-400' : 'w-2 bg-white/40 hover:bg-white/80'
+                  }`}
+                  aria-label={`Jump to image ${idx + 1}`}
+                />
+              ))}
+              <span className="text-xs text-white/70 font-mono ml-2">
+                {currentImage + 1} of {images.length}
               </span>
             </div>
           )}
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
 const Projects = () => {
   const projects = [
-    {
-      title: 'BizReels — Video-Commerce & Multi-Vendor Marketplace',
-      period: 'July 2025 - Present',
-      badge: 'Flagship SaaS Marketplace',
-      description: [
-        'Engineered an enterprise-grade hyperlocal social-commerce ecosystem transforming traditional local business directory listings into an engaging, video-first shopping feed at bizreels.in',
-        'Built fluid TikTok-style product reels feed with tap-to-buy overlays, dynamic engagement metrics (likes, saves, shares), sound controls, and cloud video transcoding optimization',
-        'Developed sub-second multi-token smart search with weighted scoring and 2 km to 50 km proximity radius filtering via Google Maps Geocoding & MongoDB Geospatial ($near / $geoWithin) queries',
-        'Architected 3-in-1 unified account switching (Customer, Merchant, Creator), automated WhatsApp/SMS lead dispatch, live Socket.IO chat, and Razorpay subscription billing'
-      ],
-      tech: ['React 18', 'Node.js', 'Express.js', 'MongoDB', 'Redis', 'Socket.IO', 'Razorpay', 'Google Maps'],
-      github: null,
-      live: 'https://bizreels.in',
-      images: [],
-      badgeColor: 'bg-rose-50 text-rose-700 border-rose-200'
-    },
     {
       title: 'SRIC School Website',
       period: 'Oct 2025 - Dec 2025',
@@ -111,6 +277,7 @@ const Projects = () => {
       github: 'https://github.com/ankitgithub12/Sitaram-Inter-College',
       live: 'https://sric-fdq2.onrender.com/',
       images: ['/Home1.png', '/Home2.png', '/admin1.png'],
+      labels: ['School Landing & Hero Portal', 'Academics & Highlights', 'Administrative Control Dashboard'],
       badgeColor: 'bg-indigo-50 text-indigo-700 border-indigo-200'
     },
     {
@@ -127,6 +294,7 @@ const Projects = () => {
       github: 'https://github.com/ankitgithub12/SlotSwapper',
       live: 'https://slotswapper-frontend-rtry.onrender.com/',
       images: ['/slotswap1.png', '/slotswap2.png', '/slotswap3.png'],
+      labels: ['User Timeslots & Dashboard', 'Peer-to-Peer Slot Swapping Feed', 'Real-Time Notifications & Requests'],
       badgeColor: 'bg-cyan-50 text-cyan-700 border-cyan-200'
     }
   ];
@@ -141,7 +309,7 @@ const Projects = () => {
           </h2>
         </div>
         <p className="text-sm text-slate-500 max-w-sm">
-          Production-grade applications built with modern engineering best practices and deployed on cloud infrastructure.
+          Production-grade applications built with modern engineering best practices, robust architectures, and cloud deployments.
         </p>
       </div>
 
@@ -149,12 +317,15 @@ const Projects = () => {
         {projects.map((project, index) => (
           <div
             key={index}
-            className={`glass-card rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm flex flex-col justify-between hover:border-brand-300 transition-all duration-300 group ${
-              index === 0 ? 'lg:col-span-2' : ''
-            }`}
+            className="glass-card rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm flex flex-col justify-between hover:border-brand-300 hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 group"
           >
             <div>
-              <ProjectImage images={project.images} title={project.title} />
+              <ProjectImage
+                images={project.images}
+                title={project.title}
+                liveUrl={project.live}
+                labels={project.labels}
+              />
 
               <div className="p-6 sm:p-7 space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -195,28 +366,24 @@ const Projects = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="px-6 sm:px-7 pb-6 pt-2 flex items-center gap-4 border-t border-slate-100/80">
-              {project.github ? (
+            <div className="px-6 sm:px-7 pb-6 pt-3 flex items-center gap-3 sm:gap-4 border-t border-slate-100/80 bg-slate-50/40">
+              {project.github && (
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold text-center flex items-center justify-center gap-2 shadow-sm transition-all hover:border-slate-300"
+                  className="flex-1 py-2.5 px-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold text-center flex items-center justify-center gap-2 shadow-sm transition-all hover:border-slate-300"
                 >
                   <FaGithub className="text-sm" />
                   <span>Source Code</span>
                 </a>
-              ) : (
-                <div className="flex-1 py-2.5 rounded-xl border border-slate-100 bg-slate-50 text-slate-400 text-xs font-semibold text-center flex items-center justify-center gap-2">
-                  <span>Client / Proprietary</span>
-                </div>
               )}
               {project.live && (
                 <a
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md shadow-brand-500/20 transition-all"
+                  className="flex-1 py-2.5 px-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md shadow-brand-500/20 transition-all"
                 >
                   <FaGlobe className="text-xs" />
                   <span>Visit Live Platform</span>
