@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaTrophy, FaMedal, FaStar, FaChartLine, FaFire } from 'react-icons/fa';
+import { FaTrophy, FaMedal, FaStar, FaChartLine, FaFire, FaCode } from 'react-icons/fa';
 import { SiLeetcode, SiGeeksforgeeks } from 'react-icons/si';
 
 const CodingStats = ({ stats, loading, error }) => {
@@ -137,8 +137,10 @@ const CodingStats = ({ stats, loading, error }) => {
           </div>
 
           <div className="p-3.5 bg-amber-50/80 rounded-2xl border border-amber-200/70 text-xs text-amber-900 flex items-center justify-between shadow-xs">
-            <span className="font-bold">Active in Graph, Tree & Dynamic Programming</span>
-            <span className="font-mono font-bold bg-amber-200/70 px-2 py-0.5 rounded text-[11px]">Ranked</span>
+            <span className="font-bold flex items-center gap-1.5">
+              <FaCode className="text-amber-600 text-sm" /> Focused on Core Data Structures & Algorithms
+            </span>
+            <span className="font-mono font-bold bg-amber-200/70 px-2 py-0.5 rounded text-[11px]">Active</span>
           </div>
         </div>
 
@@ -188,14 +190,16 @@ const CodingStats = ({ stats, loading, error }) => {
               )}
               {Object.keys(gfgBreakdown).length === 0 && (
                 <div className="text-xs text-slate-500 py-4 text-center">
-                  Solved across Array, Tree, Graph, and Dynamic Programming problems.
+                  Solved across Array, String, and Core Data Structures problems.
                 </div>
               )}
             </div>
           </div>
 
           <div className="p-3.5 bg-emerald-50/80 rounded-2xl border border-emerald-200/70 text-xs text-emerald-900 flex items-center justify-between shadow-xs">
-            <span className="font-bold">🔥 {gfgLongestStreak > 0 ? `${gfgLongestStreak}-day` : '78-day'} continuous streak</span>
+            <span className="font-bold flex items-center gap-1.5">
+              <FaFire className="text-amber-500 text-sm" /> {gfgLongestStreak > 0 ? `${gfgLongestStreak}-day` : '78-day'} continuous streak
+            </span>
             <span className="font-mono font-bold bg-emerald-200/70 px-2 py-0.5 rounded text-[11px]">Verified</span>
           </div>
         </div>
