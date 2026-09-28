@@ -301,16 +301,20 @@ const Projects = () => {
 
   return (
     <section id="projects" className="space-y-8">
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+        <div className="space-y-2 max-w-2xl">
           <span className="section-label">Featured Work</span>
-          <h2 className="section-title flex items-center gap-2">
-            <FaLaptopCode className="text-brand-600 text-2xl" /> Featured Projects
+          <h2 className="section-title flex items-center gap-2.5">
+            <FaLaptopCode className="text-brand-600 text-2xl sm:text-3xl" /> Featured Projects
           </h2>
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Production-grade applications built with modern engineering best practices, robust architectures, and cloud deployments.
+          </p>
+          <div className="h-1 w-12 bg-gradient-to-r from-brand-500 to-indigo-500 rounded-full mt-2"></div>
         </div>
-        <p className="text-sm text-slate-500 max-w-sm">
-          Production-grade applications built with modern engineering best practices, robust architectures, and cloud deployments.
-        </p>
+        <span className="glass-pill px-3.5 py-1 text-brand-700 text-xs font-bold rounded-full border border-brand-200/80 self-start font-mono shadow-xs shrink-0">
+          2 Flagship Apps
+        </span>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
