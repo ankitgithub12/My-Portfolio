@@ -11,7 +11,7 @@ const Experience = () => {
     {
       company: "FREELANCE DEVELOPER",
       role: "Founding Full-Stack Developer",
-      period: "July 2025 - Present",
+      period: "July 2026 - Present",
       location: "Remote",
       type: "Contract / SaaS Marketplace",
       badgeColor: "bg-brand-50 text-brand-700 border-brand-200/80",
