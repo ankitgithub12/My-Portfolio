@@ -97,11 +97,10 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
                 key={idx}
                 src={img}
                 alt={`${title} preview ${idx + 1}`}
-                className={`absolute inset-0 w-full h-full object-cover object-top transition-all duration-700 ${
-                  idx === currentImage
+                className={`absolute inset-0 w-full h-full object-cover object-top transition-all duration-700 ${idx === currentImage
                     ? 'opacity-100 scale-100'
                     : 'opacity-0 scale-[1.02] pointer-events-none'
-                }`}
+                  }`}
                 loading="lazy"
               />
             ))}
@@ -146,9 +145,8 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
                         e.stopPropagation();
                         setCurrentImage(idx);
                       }}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
-                        idx === currentImage ? 'w-5 bg-brand-600' : 'w-1.5 bg-slate-300 hover:bg-slate-500'
-                      }`}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentImage ? 'w-5 bg-brand-600' : 'w-1.5 bg-slate-300 hover:bg-slate-500'
+                        }`}
                       aria-label={`Jump to image ${idx + 1}`}
                     />
                   ))}
@@ -241,9 +239,8 @@ const ProjectImage = ({ images, title, liveUrl, labels = [] }) => {
                     <button
                       key={idx}
                       onClick={() => setCurrentImage(idx)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        idx === currentImage ? 'w-6 bg-brand-600' : 'w-2 bg-slate-300 hover:bg-slate-400'
-                      }`}
+                      className={`h-2 rounded-full transition-all duration-300 ${idx === currentImage ? 'w-6 bg-brand-600' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                        }`}
                       aria-label={`Jump to image ${idx + 1}`}
                     />
                   ))}
