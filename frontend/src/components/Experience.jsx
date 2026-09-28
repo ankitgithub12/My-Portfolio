@@ -2,44 +2,60 @@ import React from 'react';
 import {
   FaBriefcase, FaCalendarAlt, FaMapMarkerAlt, FaAward,
   FaExternalLinkAlt, FaCheckCircle, FaStar, FaUsers, FaCodeBranch,
-  FaHandshake, FaLaptopCode, FaGlobe
+  FaHandshake, FaLaptopCode, FaGlobe, FaRocket, FaShieldAlt
 } from 'react-icons/fa';
 
 const Experience = () => {
   const experiences = [
     {
       company: "FREELANCE DEVELOPER",
-      role: "Freelance Full Stack Developer",
+      role: "Full-Stack Architect & Lead Engineer",
       period: "July 2025 - Present",
       location: "Remote",
-      type: "Self-Employed / Freelance",
+      type: "SaaS / Multi-Vendor Marketplace",
       badgeColor: "bg-brand-50 text-brand-700 border-brand-200",
-      technologies: ["React.js", "Node.js", "MongoDB", "Express.js", "Tailwind CSS", "REST APIs", "JWT"],
+      technologies: [
+        "React 18",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Redis",
+        "Socket.IO",
+        "Redux Toolkit",
+        "Tailwind CSS",
+        "Razorpay",
+        "Google Maps Platform"
+      ],
       projects: [
         {
-          title: "Bizreels Platform (bizreels.in)",
-          description: "Engineering and scaling the Bizreels platform (bizreels.in), building responsive, high-performance web interfaces and robust backend APIs:",
+          title: "BizReels — Hyperlocal Video-Commerce & Multi-Vendor Marketplace Platform",
+          tagline: "Next-generation short-form video marketplace uniting local merchants, content creators, and consumers with real-time leads, geo-discovery, and in-app checkout.",
+          description: "Engineered BizReels (bizreels.in), an enterprise-grade hyperlocal social-commerce ecosystem that transforms traditional local business directory listings into an engaging, video-first shopping feed:",
           live: "https://bizreels.in",
           github: null,
           highlights: [
-            "Designing and developing core features for bizreels.in, ensuring modern, mobile-first responsive user experience",
-            "Architecting scalable RESTful APIs with Node.js and Express.js, implementing secure authentication and state management",
-            "Optimizing MongoDB database schemas and queries for fast content delivery and minimal latency",
-            "Managing deployment, cloud hosting, domain integration, and ongoing continuous feature rollouts"
+            "Video-First Shopping & Discovery: Built fluid TikTok-style reels player with product tags, tap-to-buy overlays, dynamic engagement metrics (likes, saves, shares), sound controls, and cloud video transcoding pipelines.",
+            "Hyperlocal Search & Conjunction Engine: Developed multi-token smart search with weighted scoring and 2 km to 50 km proximity radius filtering via Google Maps Geocoding and MongoDB Geospatial ($near / $geoWithin) queries.",
+            "3-in-1 Unified Role Architecture: Seamless role switching between Customer, Vendor (variant management, inventory, multi-tier pricing, GST invoices), and Creator (escrow-backed videographer hiring) under one account.",
+            "Real-Time Lead Generation & Communications: Instant WhatsApp API & click-to-call lead dispatch to verified vendors, paired with live bidirectional Socket.IO messaging (read receipts, unread counter badges).",
+            "Monetization & KYC Compliance: Integrated Razorpay recurring subscription tiers (Starter, Growth, Enterprise), wallet credit ledgers, and automated merchant verification workflows (PAN, Aadhaar OTP, GSTIN, and Bank KYC)."
           ]
         }
       ],
       responsibilities: [
-        "Translating product specifications into production-ready full-stack web applications",
-        "Implementing responsive and accessible interfaces with React.js and modern CSS frameworks",
-        "Managing end-to-end cloud deployment, SSL, and domain hosting on platforms like Render and Vercel",
-        "Providing ongoing technical consultation, code optimizations, and bug resolution"
+        "Architected modular MVC + Service-Repository backend in Node.js & Express with high-throughput MongoDB subdocuments & Redis caching",
+        "Engineered sub-second multi-attribute search breaking queries into concurrent tokens evaluated across titles, brands, variants, and custom specs",
+        "Designed resilient dual-channel lead delivery: real-time Socket.IO WebSockets with automatic WhatsApp API & SMS fallback",
+        "Implemented multi-role JWT authentication with role-scoped middleware (requireAuth, requireRole) and isolated profile sub-schemas",
+        "Integrated Razorpay payment gateway for automated recurring subscription plans and digital wallet credits ledger",
+        "Built centralized Super Admin Control Center for platform metrics, KYC audits, user role management, commission configuration, and audit logs"
       ],
       achievements: [
-        "Successfully launched and actively maintaining production deployments on bizreels.in",
-        "Delivered custom web applications with 100% on-time milestone completion and positive client feedback"
+        "Sub-Second Search: Solved MongoDB single-regex bottlenecks with multi-token conjunction search and weighted scoring",
+        "Resilient Lead Delivery: 100% notification delivery using dual-channel WebSockets push with automatic WhatsApp API fallback",
+        "Live Production Platform: Successfully deployed and actively scaling the production platform at bizreels.in"
       ],
-      learningImpact: "Working independently as a freelance developer on production platforms like bizreels.in has accelerated my full-cycle engineering skills, architectural decision-making, and client communication—delivering reliable web applications under real-world requirements."
+      learningImpact: "As Full-Stack Architect & Lead Engineer on BizReels (bizreels.in), designed and delivered an enterprise-grade social-commerce ecosystem from scratch. Tackling complex challenges in geospatial indexing, high-concurrency real-time messaging, and multi-role state persistence validated my ability to architect high-scale, production-ready SaaS marketplace platforms."
     },
     {
       company: "EMOTE TECHNOLOGY",
@@ -105,7 +121,7 @@ const Experience = () => {
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 border-b border-slate-200 pb-6">
               <div className="flex items-start gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white text-2xl shadow-md shadow-brand-500/20 shrink-0">
-                  {expIndex === 0 ? <FaHandshake /> : <FaBriefcase />}
+                  {expIndex === 0 ? <FaRocket /> : <FaBriefcase />}
                 </div>
                 <div>
                   <div className="flex items-center gap-3 flex-wrap">
@@ -130,7 +146,7 @@ const Experience = () => {
               </div>
 
               {/* Tech Stack Pills */}
-              <div className="flex flex-wrap gap-1.5 self-start">
+              <div className="flex flex-wrap gap-1.5 self-start max-w-md">
                 {exp.technologies.map((tech, idx) => (
                   <span
                     key={idx}
@@ -154,8 +170,11 @@ const Experience = () => {
                     className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 space-y-3"
                   >
                     <div className="flex items-start justify-between gap-4">
-                      <div>
+                      <div className="flex-1">
                         <h5 className="font-bold text-slate-900 text-base">{project.title}</h5>
+                        {project.tagline && (
+                          <p className="text-xs font-semibold text-brand-600 mt-0.5">{project.tagline}</p>
+                        )}
                         <p className="text-slate-600 text-sm mt-1">{project.description}</p>
                       </div>
                       <div className="flex items-center gap-2 shrink-0">
@@ -164,7 +183,7 @@ const Experience = () => {
                             href={project.live}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 rounded-lg bg-white border border-slate-200 text-brand-600 hover:text-brand-700 shadow-sm text-xs flex items-center gap-1.5 font-semibold"
+                            className="p-2 rounded-lg bg-white border border-slate-200 text-brand-600 hover:text-brand-700 shadow-sm text-xs flex items-center gap-1.5 font-semibold transition-all hover:border-brand-300"
                             title="Visit Website"
                           >
                             <FaGlobe className="text-[11px]" />
@@ -203,7 +222,7 @@ const Experience = () => {
             {/* Key Responsibilities */}
             <div>
               <h4 className="text-sm font-bold uppercase tracking-wider text-slate-800 mb-3 flex items-center gap-2">
-                <FaUsers className="text-brand-600" /> Key Responsibilities
+                <FaUsers className="text-brand-600" /> Key Responsibilities & Architecture
               </h4>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {exp.responsibilities.map((resp, idx) => (
@@ -218,7 +237,7 @@ const Experience = () => {
             {/* Achievements */}
             <div className="p-4 sm:p-5 rounded-2xl bg-indigo-50/50 border border-indigo-100/80 space-y-3">
               <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-2">
-                <FaAward className="text-amber-500" /> Achievements
+                <FaAward className="text-amber-500" /> Measurable Achievements & Challenges Solved
               </h4>
               <div className="space-y-2">
                 {exp.achievements.map((ach, idx) => (

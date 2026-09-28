@@ -1,11 +1,11 @@
 import React from 'react';
-import { FaGithub, FaExternalLinkAlt, FaCheckCircle, FaLaptopCode } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaCheckCircle, FaLaptopCode, FaGlobe } from 'react-icons/fa';
 
 const ProjectImage = ({ images, title }) => {
   const [currentImage, setCurrentImage] = React.useState(0);
 
   React.useEffect(() => {
-    if (images.length <= 1) return;
+    if (!images || images.length <= 1) return;
     const timer = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 4000);
@@ -28,32 +28,49 @@ const ProjectImage = ({ images, title }) => {
           <span className="text-[11px] text-slate-400 font-mono">https://</span>
         </div>
 
-        {/* Carousel Image */}
-        <div className="flex-1 relative overflow-hidden bg-slate-900">
-          {images.map((img, idx) => (
-            <img
-              key={idx}
-              src={img}
-              alt={`${title} screenshot ${idx + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                idx === currentImage ? 'opacity-100' : 'opacity-0 pointer-events-none'
-              }`}
-            />
-          ))}
-
-          {/* Slider Indicators */}
-          {images.length > 1 && (
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 bg-slate-900/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
-              {images.map((_, idx) => (
-                <button
+        {/* Carousel Image or Branded Showcase */}
+        <div className="flex-1 relative overflow-hidden bg-slate-900 flex items-center justify-center">
+          {images && images.length > 0 ? (
+            <>
+              {images.map((img, idx) => (
+                <img
                   key={idx}
-                  onClick={() => setCurrentImage(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    idx === currentImage ? 'w-4 bg-white' : 'w-1.5 bg-white/50'
+                  src={img}
+                  alt={`${title} screenshot ${idx + 1}`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                    idx === currentImage ? 'opacity-100' : 'opacity-0 pointer-events-none'
                   }`}
-                  aria-label={`Go to image ${idx + 1}`}
                 />
               ))}
+
+              {images.length > 1 && (
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 bg-slate-900/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                  {images.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentImage(idx)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        idx === currentImage ? 'w-4 bg-white' : 'w-1.5 bg-white/50'
+                      }`}
+                      aria-label={`Go to image ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="p-6 text-center space-y-3 z-10 w-full">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-rose-500 flex items-center justify-center text-white text-2xl mx-auto shadow-lg shadow-brand-500/30">
+                🚀
+              </div>
+              <div>
+                <span className="text-white font-black text-lg block tracking-tight">BizReels</span>
+                <span className="text-slate-300 text-xs font-mono">Hyperlocal Video Commerce & Marketplace</span>
+              </div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[11px] font-semibold">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>Live at bizreels.in</span>
+              </span>
             </div>
           )}
         </div>
@@ -64,6 +81,22 @@ const ProjectImage = ({ images, title }) => {
 
 const Projects = () => {
   const projects = [
+    {
+      title: 'BizReels — Video-Commerce & Multi-Vendor Marketplace',
+      period: 'July 2025 - Present',
+      badge: 'Flagship SaaS Marketplace',
+      description: [
+        'Engineered an enterprise-grade hyperlocal social-commerce ecosystem transforming traditional local business directory listings into an engaging, video-first shopping feed at bizreels.in',
+        'Built fluid TikTok-style product reels feed with tap-to-buy overlays, dynamic engagement metrics (likes, saves, shares), sound controls, and cloud video transcoding optimization',
+        'Developed sub-second multi-token smart search with weighted scoring and 2 km to 50 km proximity radius filtering via Google Maps Geocoding & MongoDB Geospatial ($near / $geoWithin) queries',
+        'Architected 3-in-1 unified account switching (Customer, Merchant, Creator), automated WhatsApp/SMS lead dispatch, live Socket.IO chat, and Razorpay subscription billing'
+      ],
+      tech: ['React 18', 'Node.js', 'Express.js', 'MongoDB', 'Redis', 'Socket.IO', 'Razorpay', 'Google Maps'],
+      github: null,
+      live: 'https://bizreels.in',
+      images: [],
+      badgeColor: 'bg-rose-50 text-rose-700 border-rose-200'
+    },
     {
       title: 'SRIC School Website',
       period: 'Oct 2025 - Dec 2025',
@@ -116,7 +149,9 @@ const Projects = () => {
         {projects.map((project, index) => (
           <div
             key={index}
-            className="glass-card rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm flex flex-col justify-between hover:border-brand-300 transition-all duration-300 group"
+            className={`glass-card rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm flex flex-col justify-between hover:border-brand-300 transition-all duration-300 group ${
+              index === 0 ? 'lg:col-span-2' : ''
+            }`}
           >
             <div>
               <ProjectImage images={project.images} title={project.title} />
@@ -126,7 +161,7 @@ const Projects = () => {
                   <h3 className="text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
                     {project.title}
                   </h3>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${project.badgeColor}`}>
                       {project.badge}
                     </span>
@@ -161,24 +196,33 @@ const Projects = () => {
 
             {/* Action Buttons */}
             <div className="px-6 sm:px-7 pb-6 pt-2 flex items-center gap-4 border-t border-slate-100/80">
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold text-center flex items-center justify-center gap-2 shadow-sm transition-all hover:border-slate-300"
-              >
-                <FaGithub className="text-sm" />
-                <span>Source Code</span>
-              </a>
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md shadow-brand-500/20 transition-all"
-              >
-                <FaExternalLinkAlt className="text-xs" />
-                <span>Live Demo</span>
-              </a>
+              {project.github ? (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold text-center flex items-center justify-center gap-2 shadow-sm transition-all hover:border-slate-300"
+                >
+                  <FaGithub className="text-sm" />
+                  <span>Source Code</span>
+                </a>
+              ) : (
+                <div className="flex-1 py-2.5 rounded-xl border border-slate-100 bg-slate-50 text-slate-400 text-xs font-semibold text-center flex items-center justify-center gap-2">
+                  <span>Client / Proprietary</span>
+                </div>
+              )}
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md shadow-brand-500/20 transition-all"
+                >
+                  <FaGlobe className="text-xs" />
+                  <span>Visit Live Platform</span>
+                  <FaExternalLinkAlt className="text-[10px]" />
+                </a>
+              )}
             </div>
           </div>
         ))}
