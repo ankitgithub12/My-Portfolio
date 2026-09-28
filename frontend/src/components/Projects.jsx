@@ -274,8 +274,8 @@ const Projects = () => {
       tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'JWT', 'Tailwind CSS', 'Framer Motion', 'Cloudinary', 'Hostinger'],
       github: 'https://github.com/ankitgithub12/B5-Event-Management-Website',
       live: 'https://b5eventory.com/',
-      images: ['/b5eventory1.png'],
-      labels: ['Luxury Event Management Portal & Custom Planner'],
+      images: ['/B5 Home.png', '/B5 Packages.png', '/B5 Admin.png'],
+      labels: ['Luxury Event Management Portal', 'Curated Event Services & Packages', 'Executive Admin Control Dashboard'],
       badgeColor: 'bg-purple-50 text-purple-700 border-purple-200'
     },
     {
