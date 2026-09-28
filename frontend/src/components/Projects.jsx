@@ -293,22 +293,6 @@ const Projects = () => {
       images: ['/Home1.png', '/Home2.png', '/admin1.png'],
       labels: ['School Landing & Hero Portal', 'Academics & Highlights', 'Administrative Control Dashboard'],
       badgeColor: 'bg-indigo-50 text-indigo-700 border-indigo-200'
-    },
-    {
-      title: 'SlotSwap – Peer-to-Peer Scheduling App',
-      period: 'Oct 2025',
-      badge: 'Real-Time Web App',
-      description: [
-        'P2P Scheduling Platform: Engineered a peer-to-peer timeslot swapping application with state workflows, improving scheduling efficiency by 50%.',
-        'Real-Time Socket Pipeline: Integrated Socket.IO live notifications for instantaneous slot exchange requests, boosting user engagement by 40%.',
-        'Cloud Deployment & Uptime: Deployed full-stack architecture on Render with MongoDB Atlas and JWT auth, maintaining 90%+ system reliability.'
-      ],
-      tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'JWT'],
-      github: 'https://github.com/ankitgithub12/SlotSwapper',
-      live: 'https://slotswapper-frontend-rtry.onrender.com/',
-      images: ['/slotswap1.png', '/slotswap2.png', '/slotswap3.png'],
-      labels: ['User Timeslots & Dashboard', 'Peer-to-Peer Slot Swapping Feed', 'Real-Time Notifications & Requests'],
-      badgeColor: 'bg-cyan-50 text-cyan-700 border-cyan-200'
     }
   ];
 
